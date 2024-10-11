@@ -14,11 +14,20 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    private function loadMigrationsFromDirectories(): void
+    {
+        $mainPath = database_path('migrations');
+        $directories = glob($mainPath.'/*', GLOB_ONLYDIR);
+        $paths = array_merge([$mainPath], $directories);
+
+        $this->loadMigrationsFrom($paths);
+    }
+
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-        //
+        $this->loadMigrationsFromDirectories();
     }
 }
