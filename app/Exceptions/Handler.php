@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Messages\System\SystemMessage;
+use DomainException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -43,6 +47,14 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(fn (Throwable $e): JsonResponse => match (true) {
+            $e instanceof DomainException => response()
+                ->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR),
+            $e instanceof LogicalException => response()
+                ->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR),
+            default => response()->json(['error' => SystemMessage::GENERIC_ERROR])
         });
     }
 }
