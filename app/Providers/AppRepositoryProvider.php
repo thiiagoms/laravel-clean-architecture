@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
+use App\Contracts\Repositories\User\UserRepositoryContract;
+use App\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppRepositoryProvider extends ServiceProvider
 {
-    private array $repositories = [];
+    private array $repositories = [
+        UserRepositoryContract::class => UserRepository::class,
+    ];
 
     /**
      * Register services.

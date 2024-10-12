@@ -2,16 +2,24 @@
 
 namespace App\Providers;
 
+use App\Contracts\Services\User\Register\RegisterUserServiceContract;
+use App\Services\User\Register\RegisterUserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    private array $services = [
+        RegisterUserServiceContract::class => RegisterUserService::class,
+    ];
+
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        //
+        foreach ($this->services as $contract => $service) {
+            $this->app->bind($contract, $service);
+        }
     }
 
     private function loadMigrationsFromDirectories(): void
