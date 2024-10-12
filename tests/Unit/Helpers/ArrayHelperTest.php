@@ -9,57 +9,42 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayHelperTest extends TestCase
 {
-    public static function cleanHelperProvider(): array
+    public static function removeEmptyHelperProvider(): array
     {
         return [
-            'should remove spaces and html tags from string' => [
-                'payload' => ' <h1>Hello World</h1> ',
-                'result' => 'Hello World',
-            ],
-            'should remove spaces and html tags from each element of array' => [
+            'should remove empty values from array and return new array without empty values' => [
                 'payload' => [
-                    ' Hello World ',
-                    ' <script>console.log("Hello World")</script> ',
+                    'foo' => 'foo',
+                    'bar' => 'bar',
+                    'qux' => '',
                 ],
                 'result' => [
-                    'Hello World',
-                    'console.log("Hello World")',
+                    'foo' => 'foo',
+                    'bar' => 'bar',
                 ],
             ],
-            'should return empty array if payload is empty' => [
+            'should return entire array if payload array is not empty' => [
+                'payload' => [
+                    'foo' => 'foo',
+                    'bar' => 'bar',
+                    'qux' => 'qux',
+                ],
+                'result' => [
+                    'foo' => 'foo',
+                    'bar' => 'bar',
+                    'qux' => 'qux',
+                ],
+            ],
+            'should return empty array if payload array is empty' => [
                 'payload' => [],
                 'result' => [],
             ],
         ];
     }
 
-    #[DataProvider('cleanHelperProvider')]
-    public function testCleanHelper(string|array $payload, string|array $result): void
+    #[DataProvider('removeEmptyHelperProvider')]
+    public function testRemoveEmptyHelper(array $payload, array $result): void
     {
-        $this->assertSame(clean($payload), $result);
-    }
-
-    public static function isEmailHelperProvider(): array
-    {
-        return [
-            'should return true if email is valid' => [
-                'email' => fake()->freeEmail(),
-                'result' => true,
-            ],
-            'should return false if email is not valid' => [
-                'email' => fake()->name(),
-                'result' => false,
-            ],
-            'should return false if email is empty' => [
-                'email' => '',
-                'result' => false,
-            ],
-        ];
-    }
-
-    #[DataProvider('isEmailHelperProvider')]
-    public function testIsEmailHelper(string $email, bool $result): void
-    {
-        $this->assertSame(isEmail($email), $result);
+        $this->assertSame(removeEmpty($payload), $result);
     }
 }
