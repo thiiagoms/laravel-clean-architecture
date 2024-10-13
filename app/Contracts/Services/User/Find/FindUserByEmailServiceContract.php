@@ -12,5 +12,5 @@ interface FindUserByEmailServiceContract
     /**
      * @throws LogicalException
      */
-    public function handle(string $email): ?User;
+    public function handle(string $email): User|bool;
 }
