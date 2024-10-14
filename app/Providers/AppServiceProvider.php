@@ -10,6 +10,7 @@ use App\Contracts\Services\Task\Register\RegisterTaskServiceContract;
 use App\Contracts\Services\User\Find\FindUserByEmailServiceContract;
 use App\Contracts\Services\User\Find\FindUserByIdServiceContract;
 use App\Contracts\Services\User\Register\RegisterUserServiceContract;
+use App\Models\Task;
 use App\Services\Auth\Authenticate\AuthenticateUserService;
 use App\Services\Auth\Authenticate\AuthenticatorUserService;
 use App\Services\Auth\Token\TokenExceptionHandler;

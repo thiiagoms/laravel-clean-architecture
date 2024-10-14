@@ -6,6 +6,7 @@ use App\DTO\Task\Register\RegisterTaskDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\Register\RegisterTaskRequest;
 use App\Http\Resources\Task\TaskResource;
+use App\Models\Task;
 use App\Services\Task\Register\RegisterTaskService;
 use Illuminate\Http\Request;
 
@@ -36,9 +37,11 @@ class TaskApiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task): TaskResource
     {
-        //
+        $this->authorize('view', $task);
+
+        return TaskResource::make($task);
     }
 
     /**
