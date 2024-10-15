@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Task\Find;
 
+use App\Enums\User\UserRoleEnum;
 use App\Messages\Auth\AuthMessage;
 use App\Messages\System\SystemMessage;
 use App\Models\Task;
@@ -79,6 +80,53 @@ class FindTaskTest extends TestCase
         $task = Task::factory()->createOne(['user_id' => $this->user->id]);
 
         $this
+            ->getJson(self::FIND_TASK_ENDPOINT.DIRECTORY_SEPARATOR.$task->id)
+            ->assertOk()
+            ->assertJson(
+                fn (AssertableJson $json): AssertableJson => $json
+                    ->hasAll([
+                        'data',
+                        'data.id',
+                        'data.title',
+                        'data.description',
+                        'data.status',
+                        'data.user',
+                        'data.user.id',
+                        'data.user.name',
+                        'data.created_at',
+                        'data.updated_at',
+                    ])
+                    ->whereAllType([
+                        'data' => 'array',
+                        'data.id' => 'string',
+                        'data.title' => 'string',
+                        'data.description' => 'string',
+                        'data.status' => 'string',
+                        'data.user' => 'array',
+                        'data.user.id' => 'string',
+                        'data.user.name' => 'string',
+                        'data.created_at' => 'string',
+                        'data.updated_at' => 'string',
+                    ])
+                    ->whereAll([
+                        'data.id' => $task->id,
+                        'data.title' => $task->title,
+                        'data.description' => $task->description,
+                        'data.status' => $task->status->value,
+                        'data.user.id' => $this->user->id,
+                        'data.user.name' => $this->user->name,
+                    ])
+            );
+    }
+
+    public function testItShouldReturnAnyUserTaskWhenUserHasAdminRole(): void
+    {
+        $user = User::factory()->createOne(['role' => UserRoleEnum::ADMIN]);
+
+        $task = Task::factory()->createOne(['user_id' => $this->user->id]);
+
+        $this
+            ->actingAs($user)
             ->getJson(self::FIND_TASK_ENDPOINT.DIRECTORY_SEPARATOR.$task->id)
             ->assertOk()
             ->assertJson(

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Task\Destroy;
 
+use App\Enums\User\UserRoleEnum;
 use App\Messages\Auth\AuthMessage;
 use App\Messages\System\SystemMessage;
 use App\Models\Task;
@@ -58,8 +59,19 @@ class DestroyTaskTest extends TestCase
             );
     }
 
-    public function testItShouldReturnNptContentResponseWhenUserDestroyTaskThatBelongsToUser(): void
+    public function testItShouldReturnNoContentResponseWhenUserDestroyTaskThatBelongsToUser(): void
     {
+        $task = Task::factory()->createOne(['user_id' => $this->user->id]);
+
+        $this
+            ->deleteJson(self::DELETE_TASK_ENDPOINT.DIRECTORY_SEPARATOR.$task->id)
+            ->assertNoContent();
+    }
+
+    public function testShouldReturnNoContentResponseWhenUserHasAdminRoleAndDestroyAnotherUserTask(): void
+    {
+        $user = User::factory()->createOne(['role' => UserRoleEnum::ADMIN]);
+
         $task = Task::factory()->createOne(['user_id' => $this->user->id]);
 
         $this
