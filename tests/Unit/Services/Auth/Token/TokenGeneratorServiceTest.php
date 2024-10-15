@@ -14,7 +14,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TokenGeneratorServiceTest extends TestCase
 {
-    public function testItShoudlThrowAuthenticationEXceptionWithInvalidCredentialsMessageWhenUserCanNotAuthenticateWithCredentials(): void
+    public function testItShouldThrowAuthenticationEXceptionWithInvalidCredentialsMessageWhenUserCanNotAuthenticateWithCredentials(): void
     {
         $authDTO = AuthenticateUserDTO::fromArray(['email' => fake()->freeEmail(), 'password' => fake()->password()]);
 
@@ -37,7 +37,7 @@ class TokenGeneratorServiceTest extends TestCase
         $tokenGeneratorService->generateToken($authDTO);
     }
 
-    public function testItShoudlReturnUserTokenWhenUserCanAuthenticateWithValidCredentials(): void
+    public function testItShouldReturnUserTokenWhenUserCanAuthenticateWithValidCredentials(): void
     {
         $userMock = new User(User::factory()->raw());
 
@@ -64,7 +64,7 @@ class TokenGeneratorServiceTest extends TestCase
         $this->assertEquals($tokenMock, $token);
     }
 
-    public function testItShoudlReturnTokenDTOWhenReceiveAUsertoken(): void
+    public function testItShouldReturnTokenDTOWhenReceiveAUserToken(): void
     {
         $userMock = new User(User::factory()->raw());
 

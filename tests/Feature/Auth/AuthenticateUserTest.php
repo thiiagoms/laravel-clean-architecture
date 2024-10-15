@@ -187,7 +187,7 @@ class AuthenticateUserTest extends TestCase
             );
     }
 
-    public function testItshouldReturnUserTokenWhenCredentialsProvidedMatchWithUserInDatabase(): void
+    public function testItShouldReturnUserTokenWhenCredentialsProvidedMatchWithUserInDatabase(): void
     {
         User::factory()->createOne(['email' => 'ilovelaravel@gmail.com', 'password' => 'p4SWo$ad12_']);
 

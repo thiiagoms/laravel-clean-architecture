@@ -81,7 +81,7 @@ class AuthenticateUserServiceTest extends TestCase
         Mockery::close();
     }
 
-    public function testItShouldReturnUserTokenDTOWithTokenSettingsWhenUserCrendetialsMatchWithUserInDatabase(): void
+    public function testItShouldReturnUserTokenDTOWithTokenSettingsWhenUserCredentialsMatchWithUserInDatabase(): void
     {
         $userMock = new User(User::factory()->raw());
 
