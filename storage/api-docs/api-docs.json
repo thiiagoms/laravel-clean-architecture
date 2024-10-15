@@ -1,0 +1,536 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ESocial Tasks API Documentation",
+        "description": "API Documentation for tasks management system",
+        "contact": {
+            "name": "Thiago",
+            "email": "thiiagoms@proton.me"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/documentation",
+            "description": "API Documentation Server"
+        }
+    ],
+    "paths": {
+        "/api/auth": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Authenticate user and return user token",
+                "description": "Authenticate user by providing their email and password. If the credentials are valid, a token is returned which can be used to authenticate subsequent requests.",
+                "operationId": "7acf95f83d57e37ec6ad2a78eaa587c9",
+                "requestBody": {
+                    "description": "User data for login",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthenticateUserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TokenVirtualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    }
+                }
+            }
+        },
+        "/api/task": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Create new task",
+                "description": "Create a new task and receive the task data upon successful creation.",
+                "operationId": "154945e2336abb5790bbefbec52fc17a",
+                "requestBody": {
+                    "description": "Task data for creation",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterTaskVirtualRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskVirtualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            }
+        },
+        "/api/task/{id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Retrieves the detailed task record for the authenticated user.",
+                "description": "Retrieves the detailed task record for the authenticated user but only task that the authenticated user has permission to view will be returned or if user is admin all tasks will be returned.",
+                "operationId": "1f380f9823eef1ac1aea55ce6eef77ab",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id (uuid) of the task record to be retrieved.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskVirtualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update the specified task in database.",
+                "description": "Update the specified task in database but only tasks that the authenticated user has permission to update will be updated except if user is admin.",
+                "operationId": "e4353fed667ca839f0ed2c38c7e08dcb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id (uuid) of the task record to be updated.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Task data for update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterTaskVirtualRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskVirtualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Remove the specified task from database.",
+                "description": "Remove the specified task from database but only task that the authenticated user has permission to delete will be deleted or if user is admin.",
+                "operationId": "4d09a66e49c002e9b7a35059edd8f31f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id (uuid) of the task record to be deleted.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Operation success"
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update the specified task in database.",
+                "description": "Update the specified task in database but only tasks that the authenticated user has permission to update will be updated except if user is admin.",
+                "operationId": "7830cbdf44df392bb027789e858437a8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id (uuid) of the task record to be updated.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Expense data for update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterTaskVirtualRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TaskVirtualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register new user",
+                "description": "Register a new user and receive the user's data upon successful creation.",
+                "operationId": "97e054f1028de2829e6b4216a45a0ca0",
+                "requestBody": {
+                    "description": "User data for registration",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterUserVirtualRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserVirtualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The server could not process the request due to invalid input."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AuthenticateUserRequest": {
+                "title": "User authentication request",
+                "description": "Basic request for user authentication",
+                "properties": {
+                    "email": {
+                        "description": "The email address of the user.",
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "password": {
+                        "description": "The password for the user.",
+                        "type": "string",
+                        "example": "@p5sSw0rd!"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterTaskVirtualRequest": {
+                "title": "Task register request",
+                "description": "Base request for create new task for authenticated user",
+                "properties": {
+                    "title": {
+                        "description": "The title of the task.",
+                        "type": "string",
+                        "maxLength": 100,
+                        "example": "My first task"
+                    },
+                    "description": {
+                        "description": "The description of the task.",
+                        "type": "string",
+                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+                    },
+                    "status": {
+                        "description": "The status of the task.",
+                        "type": "string",
+                        "example": "todo"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterUserVirtualRequest": {
+                "title": "User register request",
+                "description": "Request to create new user on system",
+                "properties": {
+                    "name": {
+                        "description": "The name of the user.",
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "description": "The email address of the user.",
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "password": {
+                        "description": "The password for the user.",
+                        "type": "string",
+                        "example": "@p5sSw0rd!"
+                    }
+                },
+                "type": "object"
+            },
+            "TokenVirtualResponse": {
+                "title": "User authenticated response",
+                "description": "User Token response for authenticated user",
+                "properties": {
+                    "token": {
+                        "description": "The token for the user.",
+                        "type": "string",
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    },
+                    "token_type": {
+                        "description": "The type of the token.",
+                        "type": "string",
+                        "example": "Bearer"
+                    },
+                    "expires_in": {
+                        "description": "The expiration time of the token.",
+                        "type": "integer",
+                        "example": 3600
+                    }
+                },
+                "type": "object"
+            },
+            "TaskVirtualResponse": {
+                "title": "Task Response",
+                "description": "Task base response",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "description": "The unique identifier of the task.",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "title": {
+                        "description": "The title of the task.",
+                        "type": "string",
+                        "example": "My first task"
+                    },
+                    "description": {
+                        "description": "The description of the task.",
+                        "type": "string",
+                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+                    },
+                    "status": {
+                        "description": "The status of the task.",
+                        "type": "string",
+                        "example": "todo"
+                    },
+                    "created_at": {
+                        "title": "created at",
+                        "description": "The date and time when the task was created",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-15 23:19:39"
+                    },
+                    "updated_at": {
+                        "title": "updated at",
+                        "description": "The date and time when the task was updated",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-10-15 23:19:39"
+                    }
+                },
+                "type": "object"
+            },
+            "UserVirtualResponse": {
+                "title": "User response",
+                "description": "Base response for user CRUD operations",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "description": "The unique identifier of the user.",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "The name of the user.",
+                        "type": "string",
+                        "format": "string",
+                        "example": "John"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "The email address of the user.",
+                        "type": "string",
+                        "format": "email",
+                        "example": "john@example.com"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "The date and time when the user was created",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-06-02 22:19:39"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "The date and time when the user was updated",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-06-02 23:19:39"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Task",
+            "description": "Task"
+        },
+        {
+            "name": "User",
+            "description": "User"
+        }
+    ]
+}

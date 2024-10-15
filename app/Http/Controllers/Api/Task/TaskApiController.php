@@ -16,6 +16,8 @@ use App\Services\Task\Update\UpdateTaskService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use OpenApi\Attributes as OA;
+use OpenApi\Attributes\JsonContent;
 
 class TaskApiController extends Controller
 {
@@ -38,9 +40,41 @@ class TaskApiController extends Controller
         return TaskResource::collection($tasks);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    #[OA\Post(
+        path: '/api/task',
+        tags: ['Task'],
+        summary: 'Create new task',
+        security: ['bearerAuth'],
+        description: 'Create a new task and receive the task data upon successful creation.',
+        requestBody: new OA\RequestBody(
+            description: 'Task data for creation',
+            required: true,
+            content: new JsonContent(
+                ref: '#/components/schemas/RegisterTaskVirtualRequest'
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 201,
+                description: 'Success response',
+                content: new JsonContent(
+                    type: 'array',
+                    items: new OA\Items(
+                        type: 'object',
+                        ref: '#/components/schemas/TaskVirtualResponse'
+                    )
+                )
+            ),
+            new OA\Response(
+                response: 400,
+                description: 'The server could not process the request due to invalid input.'
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthorized'
+            ),
+        ]
+    )]
     public function store(RegisterTaskRequest $request): TaskResource
     {
         $registerTaskDTO = RegisterTaskDTO::fromRequest($request);
@@ -50,9 +84,45 @@ class TaskApiController extends Controller
         return TaskResource::make($task);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    #[OA\Get(
+        path: '/api/task/{id}',
+        tags: ['Task'],
+        summary: 'Retrieves the detailed task record for the authenticated user.',
+        security: ['bearerAuth'],
+        description: 'Retrieves the detailed task record for the authenticated user but only task that the authenticated user has permission to view will be returned or if user is admin all tasks will be returned.',
+        parameters: [
+            new OA\Parameter(
+                name: 'id',
+                in: 'path',
+                description: 'The id (uuid) of the task record to be retrieved.',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Success response',
+                content: new JsonContent(
+                    type: 'array',
+                    items: new OA\Items(
+                        type: 'object',
+                        ref: '#/components/schemas/TaskVirtualResponse'
+                    )
+                )
+            ),
+            new OA\Response(
+                response: 400,
+                description: 'The server could not process the request due to invalid input.'
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthorized'
+            ),
+        ]
+    )]
     public function show(Task $task): TaskResource
     {
         $this->authorize('view', $task);
@@ -60,9 +130,98 @@ class TaskApiController extends Controller
         return TaskResource::make($task);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    #[OA\Put(
+        path: '/api/task/{id}',
+        tags: ['Task'],
+        summary: 'Update the specified task in database.',
+        security: ['bearerAuth'],
+        description: 'Update the specified task in database but only tasks that the authenticated user has permission to update will be updated except if user is admin.',
+        parameters: [
+            new OA\Parameter(
+                name: 'id',
+                in: 'path',
+                description: 'The id (uuid) of the task record to be updated.',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        requestBody: new OA\RequestBody(
+            description: 'Task data for update',
+            required: true,
+            content: new JsonContent(
+                ref: '#/components/schemas/RegisterTaskVirtualRequest'
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Success response',
+                content: new JsonContent(
+                    type: 'array',
+                    items: new OA\Items(
+                        type: 'object',
+                        ref: '#/components/schemas/TaskVirtualResponse'
+                    )
+                )
+            ),
+            new OA\Response(
+                response: 400,
+                description: 'The server could not process the request due to invalid input.'
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthorized'
+            ),
+        ]
+    )]
+    #[OA\Patch(
+        path: '/api/task/{id}',
+        tags: ['Task'],
+        summary: 'Update the specified task in database.',
+        security: ['bearerAuth'],
+        description: 'Update the specified task in database but only tasks that the authenticated user has permission to update will be updated except if user is admin.',
+        parameters: [
+            new OA\Parameter(
+                name: 'id',
+                in: 'path',
+                description: 'The id (uuid) of the task record to be updated.',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        requestBody: new OA\RequestBody(
+            description: 'Expense data for update',
+            required: true,
+            content: new JsonContent(
+                ref: '#/components/schemas/RegisterTaskVirtualRequest'
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Success response',
+                content: new JsonContent(
+                    type: 'array',
+                    items: new OA\Items(
+                        type: 'object',
+                        ref: '#/components/schemas/TaskVirtualResponse'
+                    )
+                )
+            ),
+            new OA\Response(
+                response: 400,
+                description: 'The server could not process the request due to invalid input.'
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthorized'
+            ),
+        ]
+    )]
     public function update(UpdateTaskRequest $request, Task $task): TaskResource
     {
         $this->authorize('update', $task);
@@ -74,9 +233,38 @@ class TaskApiController extends Controller
         return TaskResource::make($task);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    #[OA\Delete(
+        path: '/api/task/{id}',
+        tags: ['Task'],
+        summary: 'Remove the specified task from database.',
+        security: ['bearerAuth'],
+        description: 'Remove the specified task from database but only task that the authenticated user has permission to delete will be deleted or if user is admin.',
+        parameters: [
+            new OA\Parameter(
+                name: 'id',
+                in: 'path',
+                description: 'The id (uuid) of the task record to be deleted.',
+                required: true,
+                schema: new OA\Schema(
+                    type: 'string'
+                )
+            ),
+        ],
+        responses: [
+            new OA\Response(
+                response: 204,
+                description: 'Operation success'
+            ),
+            new OA\Response(
+                response: 400,
+                description: 'The server could not process the request due to invalid input.'
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthorized'
+            ),
+        ]
+    )]
     public function destroy(Task $task): JsonResponse
     {
         $this->authorize('update', $task);
