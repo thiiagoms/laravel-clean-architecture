@@ -9,14 +9,18 @@ use App\Http\Requests\Task\Register\RegisterTaskRequest;
 use App\Http\Requests\Task\Update\UpdateTaskRequest;
 use App\Http\Resources\Task\TaskResource;
 use App\Models\Task;
+use App\Services\Task\Destroy\DestroyTaskService;
 use App\Services\Task\Register\RegisterTaskService;
 use App\Services\Task\Update\UpdateTaskService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class TaskApiController extends Controller
 {
     public function __construct(
         private readonly RegisterTaskService $registerTaskService,
-        private readonly UpdateTaskService $updateTaskService
+        private readonly UpdateTaskService $updateTaskService,
+        private readonly DestroyTaskService $destroyTaskService,
     ) {}
 
     /**
@@ -66,8 +70,12 @@ class TaskApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task): JsonResponse
     {
-        //
+        $this->authorize('update', $task);
+
+        $this->destroyTaskService->handle($task->id);
+
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }
