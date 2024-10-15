@@ -9,20 +9,18 @@
 1. Clone o repositório:
 
 ```bash
-$ git clone https://github.com/thiiagoms/teste-esocial esocial
+$ git clone https://github.com/thiiagoms/teste-desenvolvedor-esocial esocial
 $ cd esocial
 esocial $
 ```
 
-2. Setup dos containers:
+2. Setup dos containers (Talvez seja necessário trocar o `user` e `uid` em `.devops/php/Dockerfile`):
 
 ```bash
 esocial $ cp .env.example .env
 esocial $ docker-compose up -d
 esocial $ docker-compose exec app bash
 ```
-
-Obs: Talvez seja necessário trocar o `user` e `uid` em `.devops/php/Dockerfile`
 
 3. Setup das dependências da aplicação:
 
@@ -33,13 +31,19 @@ thiiagoms@ca644be5c8b5:/var/www$ php artisan jwt:secret
 thiiagoms@ca644be5c8b5:/var/www$ php artisan migrate
 ```
 
-4. Executar testes unitários e de integração,:
+4. Executar testes unitários e de integração:
 
 ```bash
 thiiagoms@ca644be5c8b5:/var/www$ php artisan test
 ```
 
-5. Gerar documentação do swagger:
+5. Para executar o **lint** (`Laravel pint`) na aplicação:
+
+```bash
+thiiagoms@ca644be5c8b5:/var/www$ composer pint app database tests
+```
+
+6. Gerar documentação do swagger:
 
 ```bash
 thiiagoms@ca644be5c8b5:/var/www$ php artisan l5-swagger:generate
