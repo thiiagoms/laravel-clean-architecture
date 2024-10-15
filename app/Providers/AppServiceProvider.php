@@ -8,6 +8,7 @@ use App\Contracts\Services\Auth\Token\TokenExceptionHandlerContract;
 use App\Contracts\Services\Auth\Token\TokenGeneratorServiceContract;
 use App\Contracts\Services\Task\Destroy\DestroyTaskServiceContract;
 use App\Contracts\Services\Task\Find\FindTaskByIdServiceContract;
+use App\Contracts\Services\Task\Find\FindTasksByUserServiceContract;
 use App\Contracts\Services\Task\Register\RegisterTaskServiceContract;
 use App\Contracts\Services\Task\Update\UpdateTaskServiceContract;
 use App\Contracts\Services\User\Find\FindUserByEmailServiceContract;
@@ -19,6 +20,7 @@ use App\Services\Auth\Token\TokenExceptionHandler;
 use App\Services\Auth\Token\TokenGeneratorService;
 use App\Services\Task\Destroy\DestroyTaskService;
 use App\Services\Task\Find\FindTaskByIdService;
+use App\Services\Task\Find\FindTasksByUserService;
 use App\Services\Task\Register\RegisterTaskService;
 use App\Services\Task\Update\UpdateTaskService;
 use App\Services\User\Find\FindUserByEmailService;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         FindTaskByIdServiceContract::class => FindTaskByIdService::class,
         UpdateTaskServiceContract::class => UpdateTaskService::class,
         DestroyTaskServiceContract::class => DestroyTaskService::class,
+        FindTasksByUserServiceContract::class => FindTasksByUserService::class,
     ];
 
     /**
