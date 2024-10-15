@@ -6,16 +6,19 @@ use App\Contracts\Services\Auth\Authenticate\AuthenticateUserServiceContract;
 use App\Contracts\Services\Auth\Authenticate\AuthenticatorUserServiceContract;
 use App\Contracts\Services\Auth\Token\TokenExceptionHandlerContract;
 use App\Contracts\Services\Auth\Token\TokenGeneratorServiceContract;
+use App\Contracts\Services\Task\Find\FindTaskByIdServiceContract;
 use App\Contracts\Services\Task\Register\RegisterTaskServiceContract;
+use App\Contracts\Services\Task\Update\UpdateTaskServiceContract;
 use App\Contracts\Services\User\Find\FindUserByEmailServiceContract;
 use App\Contracts\Services\User\Find\FindUserByIdServiceContract;
 use App\Contracts\Services\User\Register\RegisterUserServiceContract;
-use App\Models\Task;
 use App\Services\Auth\Authenticate\AuthenticateUserService;
 use App\Services\Auth\Authenticate\AuthenticatorUserService;
 use App\Services\Auth\Token\TokenExceptionHandler;
 use App\Services\Auth\Token\TokenGeneratorService;
+use App\Services\Task\Find\FindTaskByIdService;
 use App\Services\Task\Register\RegisterTaskService;
+use App\Services\Task\Update\UpdateTaskService;
 use App\Services\User\Find\FindUserByEmailService;
 use App\Services\User\Find\FindUserByIdService;
 use App\Services\User\Register\RegisterUserService;
@@ -35,6 +38,8 @@ class AppServiceProvider extends ServiceProvider
         TokenExceptionHandlerContract::class => TokenExceptionHandler::class,
         /** begin: Task */
         RegisterTaskServiceContract::class => RegisterTaskService::class,
+        FindTaskByIdServiceContract::class => FindTaskByIdService::class,
+        UpdateTaskServiceContract::class => UpdateTaskService::class,
     ];
 
     /**

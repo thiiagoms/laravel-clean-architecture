@@ -108,6 +108,7 @@ class FindTaskTest extends TestCase
                         'data.updated_at' => 'string',
                     ])
                     ->whereAll([
+                        'data.id' => $task->id,
                         'data.title' => $task->title,
                         'data.description' => $task->description,
                         'data.status' => $task->status->value,

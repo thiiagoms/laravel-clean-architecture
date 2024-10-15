@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\Api\Task;
 
 use App\DTO\Task\Register\RegisterTaskDTO;
+use App\DTO\Task\Update\UpdateTaskDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\Register\RegisterTaskRequest;
+use App\Http\Requests\Task\Update\UpdateTaskRequest;
 use App\Http\Resources\Task\TaskResource;
 use App\Models\Task;
 use App\Services\Task\Register\RegisterTaskService;
-use Illuminate\Http\Request;
+use App\Services\Task\Update\UpdateTaskService;
 
 class TaskApiController extends Controller
 {
-    public function __construct(private readonly RegisterTaskService $registerTaskService) {}
+    public function __construct(
+        private readonly RegisterTaskService $registerTaskService,
+        private readonly UpdateTaskService $updateTaskService
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -47,9 +52,15 @@ class TaskApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTaskRequest $request, Task $task): TaskResource
     {
-        //
+        $this->authorize('update', $task);
+
+        $updateTaskDTO = UpdateTaskDTO::fromRequest($request, $task);
+
+        $task = $this->updateTaskService->handle($updateTaskDTO);
+
+        return TaskResource::make($task);
     }
 
     /**
