@@ -1,28 +1,28 @@
-# ESocial API Teste
+# Task Flow API Management
 
-## Dependências
+## Dependencies :package:
 
 - Docker :whale:
 
-## Instalação
+## Run :rocket:
 
-1. Clone o repositório:
-
-```bash
-$ git clone https://github.com/thiiagoms/teste-desenvolvedor-esocial esocial
-$ cd esocial
-esocial $
-```
-
-2. Setup dos containers (Talvez seja necessário trocar o `user` e `uid` em `.devops/php/Dockerfile`):
+1. Clone:
 
 ```bash
-esocial $ cp .env.example .env
-esocial $ docker-compose up -d
-esocial $ docker-compose exec app bash
+$ git clone https://github.com/thiiagoms/task-flow
+$ cd task-flow
+task-flow $
 ```
 
-3. Setup das dependências da aplicação:
+2. Container setup:
+
+```bash
+task-flow $ cp .env.example .env
+task-flow $ docker-compose up -d
+task-flow $ docker-compose exec app bash
+```
+
+3. Install app dependencies:
 
 ```bash
 thiiagoms@ca644be5c8b5:/var/www$ composer install -vvv
@@ -31,22 +31,22 @@ thiiagoms@ca644be5c8b5:/var/www$ php artisan jwt:secret
 thiiagoms@ca644be5c8b5:/var/www$ php artisan migrate
 ```
 
-4. Executar testes unitários e de integração:
+4. Run unit and integration tests:
 
 ```bash
 thiiagoms@ca644be5c8b5:/var/www$ php artisan test
 ```
 
-5. Para executar o **lint** (`Laravel pint`) na aplicação:
+5. Run lint:
 
 ```bash
 thiiagoms@ca644be5c8b5:/var/www$ composer pint app database tests
 ```
 
-6. Gerar documentação do swagger:
+6. Generate swagger:
 
 ```bash
 thiiagoms@ca644be5c8b5:/var/www$ php artisan l5-swagger:generate
 ```
 
-Documentação servida em `http://localhost:8000/api/documentation`
+API with Swagger documentation at `http://localhost:8000/api/documentation`
