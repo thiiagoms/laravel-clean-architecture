@@ -8,6 +8,7 @@ use App\Contracts\DTO\Task\Register\RegisterTaskDTOContract;
 use App\DTO\BaseDTO;
 use App\Enums\Task\TaskStatusEnum;
 use App\Http\Requests\Task\Register\RegisterTaskRequest;
+use App\Support\Sanitizer;
 
 class RegisterTaskDTO extends BaseDTO implements RegisterTaskDTOContract
 {
@@ -20,7 +21,7 @@ class RegisterTaskDTO extends BaseDTO implements RegisterTaskDTOContract
 
     public static function fromRequest(RegisterTaskRequest $request): RegisterTaskDTO
     {
-        $payload = clean($request->validated());
+        $payload = Sanitizer::clean($request->validated());
 
         $payload['status'] = TaskStatusEnum::from($payload['status']);
 
@@ -31,7 +32,7 @@ class RegisterTaskDTO extends BaseDTO implements RegisterTaskDTOContract
 
     public static function fromArray(array $payload): RegisterTaskDTO
     {
-        $payload = clean($payload);
+        $payload = Sanitizer::clean($payload);
 
         $payload['status'] = TaskStatusEnum::from($payload['status']);
 

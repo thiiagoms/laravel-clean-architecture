@@ -8,6 +8,7 @@ use App\Http\Requests\User\Register\RegisterUserRequest;
 use App\Http\Resources\User\UserResource;
 use OpenApi\Attributes as OA;
 use OpenApi\Attributes\JsonContent;
+use Symfony\Component\HttpFoundation\Response;
 
 class RegisterUserApiController extends BaseUserApiController
 {
@@ -25,7 +26,7 @@ class RegisterUserApiController extends BaseUserApiController
         ),
         responses: [
             new OA\Response(
-                response: 201,
+                response: Response::HTTP_CREATED,
                 description: 'Success response',
                 content: new JsonContent(
                     type: 'array',
@@ -36,7 +37,7 @@ class RegisterUserApiController extends BaseUserApiController
                 )
             ),
             new OA\Response(
-                response: 400,
+                response: Response::HTTP_BAD_REQUEST,
                 description: 'The server could not process the request due to invalid input.'
             ),
         ]

@@ -29,7 +29,6 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/StringHelper.php",
             "app/Helpers/ArrayHelper.php"
         ]
     },

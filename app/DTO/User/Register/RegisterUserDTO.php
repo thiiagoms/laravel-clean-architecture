@@ -8,6 +8,7 @@ use App\Contracts\DTO\User\Register\RegisterUserDTOContract;
 use App\DTO\BaseDTO;
 use App\Enums\User\UserRoleEnum;
 use App\Http\Requests\User\Register\RegisterUserRequest;
+use App\Support\Sanitizer;
 
 class RegisterUserDTO extends BaseDTO implements RegisterUserDTOContract
 {
@@ -20,11 +21,15 @@ class RegisterUserDTO extends BaseDTO implements RegisterUserDTOContract
 
     public static function fromRequest(RegisterUserRequest $request): RegisterUserDTO
     {
-        return new self(...clean($request->validated()));
+        $payload = Sanitizer::clean($request->validated());
+
+        return new self(...$payload);
     }
 
     public static function fromArray(array $payload): RegisterUserDTO
     {
-        return new self(...clean($payload));
+        $payload = Sanitizer::clean($payload);
+
+        return new self(...$payload);
     }
 }

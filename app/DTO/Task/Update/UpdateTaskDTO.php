@@ -9,6 +9,7 @@ use App\DTO\BaseDTO;
 use App\Enums\Task\TaskStatusEnum;
 use App\Http\Requests\Task\Update\UpdateTaskRequest;
 use App\Models\Task;
+use App\Support\Sanitizer;
 
 class UpdateTaskDTO extends BaseDTO implements UpdateTaskDTOContract
 {
@@ -22,7 +23,7 @@ class UpdateTaskDTO extends BaseDTO implements UpdateTaskDTOContract
 
     public static function fromRequest(UpdateTaskRequest $request, Task $task): UpdateTaskDTO
     {
-        $payload = clean($request->validated());
+        $payload = Sanitizer::clean($request->validated());
 
         $payload['id'] = $task->id;
 
@@ -41,7 +42,7 @@ class UpdateTaskDTO extends BaseDTO implements UpdateTaskDTOContract
 
     public static function fromArray(array $payload): UpdateTaskDTO
     {
-        $payload = clean($payload);
+        $payload = Sanitizer::clean($payload);
 
         if (isset($payload['status'])) {
             $payload['status'] = TaskStatusEnum::from($payload['status']);
