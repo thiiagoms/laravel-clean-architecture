@@ -170,10 +170,30 @@ class UserTest extends TestCase
 
         $this->assertFalse($user->isEmailAlreadyConfirmed());
 
-
         $user->markEmailAsConfirmed();
 
         $this->assertNotNull($user->getEmailConfirmedAt());
         $this->assertTrue($user->isEmailAlreadyConfirmed());
+    }
+
+    #[Test]
+    public function itShouldTransformUserToArray(): void
+    {
+        $user = UserFactory::create(
+            name: new Name('John Doe'),
+            email: new Email('ilovelaravel@gmail.com'),
+            password: new Password('P4SsW0rd!@DAsD)#@')
+        );
+
+        $userArray = $user->toArray();
+
+        $this->assertArrayHasKey('id', $userArray);
+        $this->assertArrayHasKey('name', $userArray);
+        $this->assertArrayHasKey('email', $userArray);
+        $this->assertArrayHasKey('password', $userArray);
+        $this->assertArrayHasKey('role', $userArray);
+        $this->assertArrayHasKey('createdAt', $userArray);
+        $this->assertArrayHasKey('updatedAt', $userArray);
+        $this->assertArrayHasKey('emailConfirmedAt', $userArray);
     }
 }

@@ -7,8 +7,8 @@ namespace App\Validators\User;
 use App\Contracts\Repositories\User\UserRepositoryContract;
 use App\Contracts\Validators\Email\EmailValidatorContract;
 use App\Contracts\Validators\User\UserEmailValidatorContract;
+use App\Infrastructure\Persistence\Model\User;
 use App\Messages\User\UserEmailMessage;
-use App\Models\User;
 use DomainException;
 
 class UserEmailValidator implements UserEmailValidatorContract

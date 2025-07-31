@@ -3,11 +3,11 @@
 namespace Tests\Feature\Task\Register;
 
 use App\Enums\Task\TaskTitleEnum;
+use App\Infrastructure\Persistence\Model\User;
 use App\Messages\Auth\AuthMessage;
 use App\Messages\Task\TaskDescriptionMessage;
 use App\Messages\Task\TaskStatusMessage;
 use App\Messages\Task\TaskTitleMessage;
-use App\Models\User;
 use Closure;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Testing\Fluent\AssertableJson;

@@ -4,13 +4,13 @@ namespace Tests\Feature\Task\Update;
 
 use App\Enums\Task\TaskStatusEnum;
 use App\Enums\Task\TaskTitleEnum;
+use App\Infrastructure\Persistence\Model\User;
 use App\Messages\Auth\AuthMessage;
 use App\Messages\System\SystemMessage;
 use App\Messages\Task\TaskDescriptionMessage;
 use App\Messages\Task\TaskStatusMessage;
 use App\Messages\Task\TaskTitleMessage;
 use App\Models\Task;
-use App\Models\User;
 use Closure;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Testing\Fluent\AssertableJson;

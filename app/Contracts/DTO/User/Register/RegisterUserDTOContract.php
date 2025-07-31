@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contracts\DTO\User\Register;
 
+use App\Application\UseCases\User\Register\DTO\RegisterUserDTO;
 use App\Contracts\DTO\BaseDTOContract;
-use App\DTO\User\Register\RegisterUserDTO;
 use App\Http\Requests\User\Register\RegisterUserRequest;
 
 interface RegisterUserDTOContract extends BaseDTOContract

@@ -130,6 +130,7 @@ class User
             'id' => $this->id?->getValue(),
             'name' => $this->name->getValue(),
             'email' => $this->email->getValue(),
+            'password' => $this->password->getValue(),
             'role' => $this->role->value,
             'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
             'updatedAt' => $this->updatedAt->format('Y-m-d H:i:s'),

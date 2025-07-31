@@ -4,8 +4,8 @@ namespace Tests\Unit\Validators\User;
 
 use App\Contracts\Repositories\User\UserRepositoryContract;
 use App\Exceptions\LogicalException;
+use App\Infrastructure\Persistence\Model\User;
 use App\Messages\User\UserEmailMessage;
-use App\Models\User;
 use App\Validators\User\UserEmailValidator;
 use DomainException;
 use Mockery;

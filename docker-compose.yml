@@ -9,6 +9,9 @@ services:
             - ./:/var/www
         networks:
             - laravel
+        environment:
+            XDEBUG_MODE: debug,develop,coverage
+            XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
     nginx:
         image: nginx:alpine
         restart: unless-stopped

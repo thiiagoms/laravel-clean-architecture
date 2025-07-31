@@ -2,13 +2,10 @@
 
 namespace App\Exceptions;
 
-use App\Messages\System\SystemMessage;
-use DomainException;
-use Illuminate\Auth\AuthenticationException;
+use App\Application\UseCases\Auth\Exception\InvalidCredentialsException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -52,17 +49,9 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(fn (Throwable $e): JsonResponse => match (true) {
-            $e instanceof AuthenticationException => response()
-                ->json(['message' => $e->getMessage()], Response::HTTP_UNAUTHORIZED),
-            $e instanceof AuthorizationException => response()
-                ->json(['message' => $e->getMessage()], Response::HTTP_FORBIDDEN),
-            $e instanceof DomainException => response()
-                ->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR),
-            $e instanceof LogicalException => response()
-                ->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR),
-            $e instanceof NotFoundHttpException => response()
-                ->json(['message' => SystemMessage::RESOURCE_NOT_FOUND], Response::HTTP_NOT_FOUND),
-            default => response()->json(['error' => $e->getMessage()])
+            $e instanceof InvalidCredentialsException => response()->json(
+                data: ['error' => $e->getMessage()], status: Response::HTTP_UNAUTHORIZED
+            )
         });
     }
 }

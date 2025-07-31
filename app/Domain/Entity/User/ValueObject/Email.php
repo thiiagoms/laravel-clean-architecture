@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Entity\User\ValueObject;
 
-use App\Support\Sanitizer;
+use App\Infrastructure\Support\Sanitizer;
 
 final readonly class Email
 {

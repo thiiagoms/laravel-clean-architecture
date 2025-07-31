@@ -8,7 +8,7 @@ use App\Contracts\DTO\Task\Register\RegisterTaskDTOContract;
 use App\DTO\BaseDTO;
 use App\Enums\Task\TaskStatusEnum;
 use App\Http\Requests\Task\Register\RegisterTaskRequest;
-use App\Support\Sanitizer;
+use App\Infrastructure\Support\Sanitizer;
 
 class RegisterTaskDTO extends BaseDTO implements RegisterTaskDTOContract
 {

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\Task\TaskStatusEnum;
-use App\Models\User;
+use App\Infrastructure\Persistence\Model\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

@@ -4,8 +4,8 @@ namespace Tests\Unit\Services\User\Find;
 
 use App\Contracts\Repositories\User\UserRepositoryContract;
 use App\Exceptions\LogicalException;
+use App\Infrastructure\Persistence\Model\User;
 use App\Messages\System\SystemMessage;
-use App\Models\User;
 use App\Services\User\Find\FindUserByIdService;
 use DomainException;
 use Mockery;

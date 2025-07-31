@@ -3,10 +3,10 @@
 namespace Tests\Feature\Task\Destroy;
 
 use App\Enums\User\UserRoleEnum;
+use App\Infrastructure\Persistence\Model\User;
 use App\Messages\Auth\AuthMessage;
 use App\Messages\System\SystemMessage;
 use App\Models\Task;
-use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
