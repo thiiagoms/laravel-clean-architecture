@@ -17,8 +17,8 @@ class UserResource extends JsonResource
             'id' => $user->getId()->getValue(),
             'name' => $user->getName()->getValue(),
             'email' => $user->getEmail()->getValue(),
-            'created_at' => $user->getCreatedAt()->format('Y-m-d H:i:s'),
-            'updated_at' => $user->getUpdatedAt()->format('Y-m-d H:i:s'),
+            'created_at' => $user->getCreatedAt()->format('Y-m-d H:implementation:s'),
+            'updated_at' => $user->getUpdatedAt()->format('Y-m-d H:implementation:s'),
         ];
     }
 }

@@ -24,8 +24,8 @@ class TaskResource extends JsonResource
                 'id' => $this->user->id,
                 'name' => $this->user->name,
             ],
-            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d H:i:s'),
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:implementation:s'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d H:implementation:s'),
         ];
     }
 }

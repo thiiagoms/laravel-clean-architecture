@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Entity\User;
 
 use App\Domain\Common\ValueObject\Id;
+use App\Domain\Entity\Task\Interface\TaskOwnerInterface;
 use App\Domain\Entity\User\Role\Exception\InvalidRoleTransitionException;
 use App\Domain\Entity\User\Role\Role;
 use App\Domain\Entity\User\ValueObject\Email;
@@ -12,7 +13,7 @@ use App\Domain\Entity\User\ValueObject\Name;
 use App\Domain\Entity\User\ValueObject\Password;
 use DateTimeImmutable;
 
-class User
+class User implements TaskOwnerInterface
 {
     private readonly DateTimeImmutable $createdAt;
 
@@ -28,7 +29,6 @@ class User
         ?DateTimeImmutable $createdAt = null,
         ?DateTimeImmutable $updatedAt = null,
     ) {
-
         $now = new DateTimeImmutable;
 
         $this->createdAt = $createdAt ?? $now;
@@ -132,9 +132,9 @@ class User
             'email' => $this->email->getValue(),
             'password' => $this->password->getValue(),
             'role' => $this->role->value,
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'updatedAt' => $this->updatedAt->format('Y-m-d H:i:s'),
-            'emailConfirmedAt' => $this->emailConfirmedAt?->format('Y-m-d H:i:s'),
+            'createdAt' => $this->createdAt->format('Y-m-d H:implementation:s'),
+            'updatedAt' => $this->updatedAt->format('Y-m-d H:implementation:s'),
+            'emailConfirmedAt' => $this->emailConfirmedAt?->format('Y-m-d H:implementation:s'),
         ];
     }
 
