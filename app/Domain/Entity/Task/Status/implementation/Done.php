@@ -40,7 +40,7 @@ class Done implements StatusInterface
     {
         throw InvalidTaskStatusTransitionException::create(
             from: Status::DONE,
-            to: Status::DONE,
+            to: Status::CANCELLED,
             owner: $task->getOwner()
         );
     }

@@ -106,7 +106,6 @@ class Task
 
     /**
      * @internal Use only within status transition methods
-     * // TODO: Consider making this private and using a dedicated status transition service
      */
     public function setStatus(StatusInterface $status): void
     {

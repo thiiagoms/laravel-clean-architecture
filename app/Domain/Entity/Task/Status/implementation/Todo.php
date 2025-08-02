@@ -34,11 +34,7 @@ class Todo implements StatusInterface
 
     public function cancelled(Task $task): void
     {
-        throw InvalidTaskStatusTransitionException::create(
-            from: Status::TODO,
-            to: Status::CANCELLED,
-            owner: $task->getOwner()
-        );
+        $task->setStatus(new Cancelled);
     }
 
     public function getStatus(): Status

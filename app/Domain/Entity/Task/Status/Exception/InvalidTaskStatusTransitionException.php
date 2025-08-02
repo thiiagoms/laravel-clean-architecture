@@ -15,11 +15,11 @@ class InvalidTaskStatusTransitionException extends \DomainException
     public static function create(Status $from, Status $to, TaskOwnerInterface $owner): self
     {
         $message = strtr(
-            "Invalid status transition from '{from}' to '{to}' for task owned by {owner}.",
+            "Invalid status transition from '{from}' to '{to}' for task owned by '{owner}'.",
             [
                 '{from}' => $from->value,
                 '{to}' => $to->value,
-                '{owner}' => $owner->getName()->getValue(),
+                '{owner}' => $owner->getEmail()->getValue(),
             ]
         );
 
