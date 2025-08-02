@@ -7,8 +7,7 @@ use App\DTO\Task\Update\UpdateTaskDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\Register\RegisterTaskRequest;
 use App\Http\Requests\Task\Update\UpdateTaskRequest;
-use App\Http\Resources\Task\TaskResource;
-use App\Models\Task;
+use App\Infrastructure\Persistence\Model\Task;
 use App\Services\Task\Destroy\DestroyTaskService;
 use App\Services\Task\Find\FindTasksByUserService;
 use App\Services\Task\Register\RegisterTaskService;
@@ -18,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
 use OpenApi\Attributes\JsonContent;
+use TaskResource;
 
 class TaskApiController extends Controller
 {

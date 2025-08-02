@@ -13,6 +13,9 @@ class FindOrFailUserByIdService
 {
     public function __construct(private readonly FindUserByIdRepositoryInterface $repository) {}
 
+    /**
+     * @throws UserNotFoundException
+     */
     public function findOrFail(Id $id): User
     {
         $user = $this->repository->find($id);

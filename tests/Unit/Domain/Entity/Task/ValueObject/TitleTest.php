@@ -9,10 +9,19 @@ use PHPUnit\Framework\TestCase;
 class TitleTest extends TestCase
 {
     #[Test]
+    public function itShouldThrowExceptionWhenTitleIsNotAString(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Title must be a valid string and cannot be longer than 100 characters.');
+
+        new Title('');
+    }
+
+    #[Test]
     public function itShouldThrowExceptionWhenTitleIsTooLong(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Title cannot be longer than 100 characters.');
+        $this->expectExceptionMessage('Title must be a valid string and cannot be longer than 100 characters.');
 
         new Title(str_repeat('a', 101));
     }

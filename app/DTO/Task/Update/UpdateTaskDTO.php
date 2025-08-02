@@ -8,8 +8,8 @@ use App\Contracts\DTO\Task\Update\UpdateTaskDTOContract;
 use App\DTO\BaseDTO;
 use App\Enums\Task\TaskStatusEnum;
 use App\Http\Requests\Task\Update\UpdateTaskRequest;
+use App\Infrastructure\Persistence\Model\Task;
 use App\Infrastructure\Support\Sanitizer;
-use App\Models\Task;
 
 class UpdateTaskDTO extends BaseDTO implements UpdateTaskDTOContract
 {

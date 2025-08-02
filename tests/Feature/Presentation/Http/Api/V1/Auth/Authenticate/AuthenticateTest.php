@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Presentation\Http\Api\V1\Auth\Authenticate;
+namespace Tests\Feature\Presentation\Http\Api\V1\Auth\Authenticate;
 
 use App\Infrastructure\Persistence\Model\User as LaravelUserModel;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

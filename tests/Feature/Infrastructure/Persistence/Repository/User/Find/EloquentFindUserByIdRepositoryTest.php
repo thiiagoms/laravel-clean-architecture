@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Infrastructure\Persistence\Repository\User\Find;
+namespace Tests\Feature\Infrastructure\Persistence\Repository\User\Find;
 
 use App\Domain\Common\ValueObject\Id;
 use App\Infrastructure\Persistence\Model\User as LaravelUserModel;

@@ -7,7 +7,7 @@ namespace App\Application\UseCases\Auth\Authenticate\DTO;
 use App\Domain\Entity\User\ValueObject\Email;
 use App\Domain\Entity\User\ValueObject\Password;
 use App\Infrastructure\Support\Sanitizer;
-use App\Presentation\Api\V1\Auth\Requests\Authenticate\AuthenticateUserApiRequest;
+use App\Presentation\Http\Api\V1\Auth\Requests\Authenticate\AuthenticateUserApiRequest;
 
 class AuthenticateDTO
 {

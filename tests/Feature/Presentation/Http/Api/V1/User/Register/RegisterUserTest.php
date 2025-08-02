@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Presentation\Http\Api\V1\User\Register;
+namespace Tests\Feature\Presentation\Http\Api\V1\User\Register;
 
 use App\Infrastructure\Persistence\Model\User as LaravelUserModel;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

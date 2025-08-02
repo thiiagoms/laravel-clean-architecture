@@ -31,12 +31,17 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api/v1/')
                 ->name('api.v1.user.')
-                ->group(base_path('app/Presentation/Api/V1/User/Routes/routes.php'));
+                ->group(base_path('app/Presentation/Http/Api/V1/User/Routes/routes.php'));
 
-            Route::middleware('api')
+            Route::middleware(['api', 'auth:api'])
                 ->prefix('api/v1/auth/')
                 ->name('api.v1.auth.')
-                ->group(base_path('app/Presentation/Api/V1/Auth/Routes/routes.php'));
+                ->group(base_path('app/Presentation/Http/Api/V1/Auth/Routes/routes.php'));
+
+            Route::middleware('api')
+                ->prefix('api/v1/task/')
+                ->name('api.v1.task.')
+                ->group(base_path('app/Presentation/Http/Api/V1/Task/Routes/routes.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));

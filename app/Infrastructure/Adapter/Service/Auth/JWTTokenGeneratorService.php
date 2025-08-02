@@ -6,7 +6,7 @@ use App\Application\UseCases\Auth\Common\Interface\GenerateTokenInterface;
 use App\Domain\Entity\Auth\Token\Factory\TokenFactory;
 use App\Domain\Entity\Auth\Token\Token;
 use App\Domain\Entity\User\User;
-use App\Infrastructure\Adapter\UserAdapter;
+use App\Infrastructure\Persistence\Mapper\User\UserMapper;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 
 class JWTTokenGeneratorService implements GenerateTokenInterface
@@ -21,7 +21,7 @@ class JWTTokenGeneratorService implements GenerateTokenInterface
     {
         $guard = $this->guard->guard('api');
 
-        $user = UserAdapter::toModel($user);
+        $user = UserMapper::toModel($user);
 
         $token = $guard->fromUser($user);
 

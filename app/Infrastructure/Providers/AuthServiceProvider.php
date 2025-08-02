@@ -4,7 +4,7 @@ namespace App\Infrastructure\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
-use App\Models\Task;
+use App\Infrastructure\Persistence\Model\Task;
 use App\Policies\Task\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

@@ -3,9 +3,9 @@
 namespace App\Policies\Task;
 
 use App\Exceptions\AuthorizationException;
+use App\Infrastructure\Persistence\Model\Task;
 use App\Infrastructure\Persistence\Model\User;
 use App\Messages\Auth\AuthMessage;
-use App\Models\Task;
 
 class TaskPolicy
 {

@@ -8,7 +8,7 @@ use App\Domain\Entity\User\ValueObject\Email;
 use App\Domain\Entity\User\ValueObject\Name;
 use App\Domain\Entity\User\ValueObject\Password;
 use App\Infrastructure\Support\Sanitizer;
-use App\Presentation\Api\V1\User\Requests\Register\RegisterUserApiRequest;
+use App\Presentation\Http\Api\V1\User\Requests\Register\RegisterUserApiRequest;
 
 class RegisterUserDTO
 {

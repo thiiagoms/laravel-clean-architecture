@@ -2,8 +2,8 @@
 
 namespace App\Presentation\Http\Api\V1\Auth\Requests\Authenticate;
 
-use App\Presentation\Http\Api\V1\Common\Rules\EmailIsValidRule;
-use App\Presentation\Http\Api\V1\Common\Rules\PasswordIsValidRule;
+use App\Presentation\Http\Api\V1\User\Rules\EmailIsValidRule;
+use App\Presentation\Http\Api\V1\User\Rules\PasswordIsValidRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

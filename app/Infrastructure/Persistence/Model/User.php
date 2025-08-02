@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Persistence\Model;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Task;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;

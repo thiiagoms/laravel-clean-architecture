@@ -24,7 +24,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $name = New Name(fake()->name());
+        $name = new Name(fake()->name());
         $email = new Email(fake()->unique()->freeEmail());
         $password = new Password('P4sSW0rd@!)_');
 

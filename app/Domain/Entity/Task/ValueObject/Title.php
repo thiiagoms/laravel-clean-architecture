@@ -26,8 +26,11 @@ class Title
 
     private function validate(string $title): void
     {
-        if (strlen($title) > self::MAX_LENGTH) {
-            $message = sprintf('Title cannot be longer than %d characters.', self::MAX_LENGTH);
+        if (empty($title) || strlen($title) > self::MAX_LENGTH) {
+            $message = sprintf(
+                'Title must be a valid string and cannot be longer than %d characters.',
+                self::MAX_LENGTH
+            );
             throw new \InvalidArgumentException($message);
         }
     }

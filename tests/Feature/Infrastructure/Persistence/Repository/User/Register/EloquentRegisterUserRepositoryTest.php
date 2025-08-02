@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Infrastructure\Persistence\Repository\User\Register;
+namespace Tests\Feature\Infrastructure\Persistence\Repository\User\Register;
 
 use App\Domain\Entity\User\Factory\UserFactory;
 use App\Domain\Entity\User\Role\Role;
@@ -34,5 +34,6 @@ class EloquentRegisterUserRepositoryTest extends TestCase
         $this->assertTrue($result->getPassword()->match(passwordAsPlainText: 'P4sSw0RdStr0ng!@#@_'));
 
         $this->assertNotNull($result->getId());
+        $this->assertTrue(uuid_is_valid($result->getId()));
     }
 }
