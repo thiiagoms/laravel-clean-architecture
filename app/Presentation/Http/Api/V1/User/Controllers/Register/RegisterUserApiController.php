@@ -4,7 +4,7 @@ namespace App\Presentation\Http\Api\V1\User\Controllers\Register;
 
 use App\Application\UseCases\User\Register\DTO\RegisterUserDTO;
 use App\Application\UseCases\User\Register\RegisterUser;
-use App\Http\Controllers\Controller;
+use App\Presentation\Http\Api\Controller;
 use App\Presentation\Http\Api\V1\User\Requests\Register\RegisterUserApiRequest;
 use App\Presentation\Http\Api\V1\User\Resources\UserResource;
 use Illuminate\Http\JsonResponse;

@@ -3,9 +3,8 @@
 namespace App\Infrastructure\Providers;
 
 // use Illuminate\Support\Facades\Gate;
-
-use App\Infrastructure\Persistence\Model\Task;
-use App\Policies\Task\TaskPolicy;
+use App\Infrastructure\Persistence\Model\Task as LaravelTaskModel;
+use App\Infrastructure\Policies\Task\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        Task::class => TaskPolicy::class,
+        LaravelTaskModel::class => TaskPolicy::class,
     ];
 
     /**

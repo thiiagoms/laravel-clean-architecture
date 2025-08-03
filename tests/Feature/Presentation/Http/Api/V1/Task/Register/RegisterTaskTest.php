@@ -13,7 +13,7 @@ class RegisterTaskTest extends TestCase
 {
     use DatabaseTransactions;
 
-    private const string REGISTER_TASK_ENDPOINT = '/api/v1/task';
+    private const string REGISTER_TASK_ENDPOINT = '/api/v1/task/register';
 
     #[Test]
     public function itShouldNotAllowRegisterTaskWhenUserIsNotAuthenticated(): void
@@ -22,11 +22,11 @@ class RegisterTaskTest extends TestCase
             ->postJson(self::REGISTER_TASK_ENDPOINT, [
                 'title' => 'Test Task', 'description' => 'This is a test task',
             ])
-            ->assertForbidden()
+            ->assertUnauthorized()
             ->assertJson(fn (AssertableJson $json): AssertableJson => $json
                 ->has('error')
                 ->whereType('error', 'string')
-                ->where('error', 'This action is unauthorized.')
+                ->where('error', 'Unauthenticated.')
             );
     }
 
@@ -180,6 +180,7 @@ class RegisterTaskTest extends TestCase
                     'data.id',
                     'data.title',
                     'data.description',
+                    'data.status',
                     'data.created_at',
                     'data.updated_at',
                 ])
@@ -188,11 +189,13 @@ class RegisterTaskTest extends TestCase
                     'data.id' => 'string',
                     'data.title' => 'string',
                     'data.description' => 'string',
+                    'data.status' => 'string',
                     'data.created_at' => 'string',
                     'data.updated_at' => 'string',
                 ])
                 ->where('data.title', 'Task title example')
                 ->where('data.description', 'This is a test task')
+                ->where('data.status', 'todo')
             );
 
     }

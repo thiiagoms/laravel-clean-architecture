@@ -1,21 +1,28 @@
 <?php
 
-namespace App\Presentation\Http\Api\V1\Task\Swagger\Requests\Register;
+namespace App\Presentation\Http\Api\V1\Task\Swagger\Responses;
 
 use OpenApi\Attributes as OA;
 
 #[OA\Schema(
-    title: 'Task register request',
-    description: 'Base request for create new task for authenticated user',
+    title: 'Task Response',
+    description: 'Task response',
     type: 'object',
 )]
-class RegisterTaskSwaggerRequest
+class TaskSwaggerResponse
 {
+    #[OA\Property(
+        title: 'Id',
+        description: 'The unique identifier of the task.',
+        type: 'string',
+        format: 'uuid',
+    )]
+    public string $id;
+
     #[OA\Property(
         property: 'title',
         description: 'The title of the task.',
         type: 'string',
-        maxLength: 100,
         example: 'My first task',
     )]
     public string $title;
@@ -35,5 +42,23 @@ class RegisterTaskSwaggerRequest
         enum: ['todo', 'doing', 'done', 'cancelled'],
         example: 'todo',
     )]
-    public string $status;
+    public float|int $status;
+
+    #[OA\Property(
+        title: 'created at',
+        description: 'The date and time when the task was created',
+        type: 'string',
+        format: 'date-time',
+        example: '2024-10-15 23:19:39',
+    )]
+    public string $created_at;
+
+    #[OA\Property(
+        title: 'updated at',
+        description: 'The date and time when the task was updated',
+        type: 'string',
+        format: 'date-time',
+        example: '2024-10-15 23:19:39',
+    )]
+    public string $updated_at;
 }

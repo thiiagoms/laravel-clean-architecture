@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Infrastructure\Persistence\Model;
 
+use App\Domain\Common\ValueObject\Id;
 use App\Domain\Entity\User\Role\Role;
 use App\Domain\Entity\User\ValueObject\Email;
 use App\Domain\Entity\User\ValueObject\Name;
@@ -17,19 +18,15 @@ class UserFactory extends Factory
 {
     protected $model = LaravelUserModel::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $id = new Id(Str::uuid()->toString());
         $name = new Name(fake()->name());
         $email = new Email(fake()->unique()->freeEmail());
         $password = new Password('P4sSW0rd@!)_');
 
         return [
-            'id' => Str::uuid()->toString(),
+            'id' => $id->getValue(),
             'name' => $name->getValue(),
             'email' => $email->getValue(),
             'email_verified_at' => now(),
@@ -39,11 +36,6 @@ class UserFactory extends Factory
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return $this
-     */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [

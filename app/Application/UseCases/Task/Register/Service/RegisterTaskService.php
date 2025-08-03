@@ -7,9 +7,7 @@ use App\Domain\Repository\Task\Register\RegisterTaskRepositoryInterface;
 
 class RegisterTaskService
 {
-    public function __construct(
-        private readonly RegisterTaskRepositoryInterface $repository
-    ) {}
+    public function __construct(private readonly RegisterTaskRepositoryInterface $repository) {}
 
     public function handle(Task $task): Task
     {

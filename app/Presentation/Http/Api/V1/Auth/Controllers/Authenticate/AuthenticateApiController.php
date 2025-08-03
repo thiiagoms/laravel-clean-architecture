@@ -4,7 +4,7 @@ namespace App\Presentation\Http\Api\V1\Auth\Controllers\Authenticate;
 
 use App\Application\UseCases\Auth\Authenticate\Authenticate;
 use App\Application\UseCases\Auth\Authenticate\DTO\AuthenticateDTO;
-use App\Http\Controllers\Controller;
+use App\Presentation\Http\Api\Controller;
 use App\Presentation\Http\Api\V1\Auth\Requests\Authenticate\AuthenticateUserApiRequest;
 use App\Presentation\Http\Api\V1\Auth\Resources\TokenResource;
 use OpenApi\Attributes\Items;
