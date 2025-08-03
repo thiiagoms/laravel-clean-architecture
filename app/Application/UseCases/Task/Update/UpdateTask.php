@@ -21,6 +21,10 @@ final class UpdateTask
     {
         $task = $this->findOrFailTaskByIdService->findOrFail($dto->getId());
 
+        if ($task->getStatus()->isDone() || $task->getStatus()->isCancelled()) {
+            // TODO: Should block when task is done or cancelled
+        }
+
         $task = TaskEntityUpdater::mapper(task: $task, dto: $dto);
 
         return $this->service->update($task);
