@@ -9,7 +9,7 @@
         },
         "license": {
             "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "1.0.0"
     },
@@ -20,21 +20,21 @@
         }
     ],
     "paths": {
-        "/api/auth": {
+        "/api/v1/auth/login": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
-                "summary": "Authenticate user and return user token",
+                "summary": "Authenticate user and return token",
                 "description": "Authenticate user by providing their email and password. If the credentials are valid, a token is returned which can be used to authenticate subsequent requests.",
-                "operationId": "7acf95f83d57e37ec6ad2a78eaa587c9",
+                "operationId": "5ffb40fc5cfdaf821f1d60f96a5bdbb3",
                 "requestBody": {
                     "description": "User data for login",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/AuthenticateUserRequest"
+                                "$ref": "#/components/schemas/AuthenticateUserSwaggerRequest"
                             }
                         }
                     }
@@ -47,7 +47,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/TokenVirtualResponse"
+                                        "$ref": "#/components/schemas/TokenSwaggerResponse"
                                     }
                                 }
                             }
@@ -59,21 +59,21 @@
                 }
             }
         },
-        "/api/task": {
+        "/api/v1/task": {
             "post": {
                 "tags": [
                     "Task"
                 ],
                 "summary": "Create new task",
                 "description": "Create a new task and receive the task data upon successful creation.",
-                "operationId": "154945e2336abb5790bbefbec52fc17a",
+                "operationId": "890b290ce6c50098e7b4b6d1d97f42eb",
                 "requestBody": {
                     "description": "Task data for creation",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/RegisterTaskVirtualRequest"
+                                "$ref": "#/components/schemas/RegisterTaskSwaggerRequest"
                             }
                         }
                     }
@@ -84,10 +84,47 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/TaskVirtualResponse"
-                                    }
+                                    "properties": {
+                                        "id": {
+                                            "description": "The unique identifier of the task.",
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "title": {
+                                            "description": "The title of the task.",
+                                            "type": "string",
+                                            "example": "My first task"
+                                        },
+                                        "description": {
+                                            "description": "The description of the task.",
+                                            "type": "string",
+                                            "example": "Lorem Ipsum is simply dummy text..."
+                                        },
+                                        "status": {
+                                            "description": "The status of the task.",
+                                            "type": "string",
+                                            "enum": [
+                                                "todo",
+                                                "doing",
+                                                "done",
+                                                "cancelled"
+                                            ],
+                                            "example": "todo"
+                                        },
+                                        "created_at": {
+                                            "description": "The date and time when the task was created.",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-10-15 23:19:39"
+                                        },
+                                        "updated_at": {
+                                            "description": "The date and time when the task was updated.",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-10-15 23:19:39"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -95,7 +132,7 @@
                     "400": {
                         "description": "The server could not process the request due to invalid input."
                     },
-                    "401": {
+                    "403": {
                         "description": "Unauthorized"
                     }
                 },
@@ -106,14 +143,14 @@
                 ]
             }
         },
-        "/api/task/{id}": {
+        "/api/v1/task/{id}": {
             "get": {
                 "tags": [
                     "Task"
                 ],
                 "summary": "Retrieves the detailed task record for the authenticated user.",
                 "description": "Retrieves the detailed task record for the authenticated user but only task that the authenticated user has permission to view will be returned or if user is admin all tasks will be returned.",
-                "operationId": "1f380f9823eef1ac1aea55ce6eef77ab",
+                "operationId": "49abd4e729949b69f217e7d62429d904",
                 "parameters": [
                     {
                         "name": "id",
@@ -131,10 +168,47 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/TaskVirtualResponse"
-                                    }
+                                    "properties": {
+                                        "id": {
+                                            "description": "The unique identifier of the task.",
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "title": {
+                                            "description": "The title of the task.",
+                                            "type": "string",
+                                            "example": "My first task"
+                                        },
+                                        "description": {
+                                            "description": "The description of the task.",
+                                            "type": "string",
+                                            "example": "Lorem Ipsum is simply dummy text..."
+                                        },
+                                        "status": {
+                                            "description": "The status of the task.",
+                                            "type": "string",
+                                            "enum": [
+                                                "todo",
+                                                "doing",
+                                                "done",
+                                                "cancelled"
+                                            ],
+                                            "example": "todo"
+                                        },
+                                        "created_at": {
+                                            "description": "The date and time when the task was created.",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-10-15 23:19:39"
+                                        },
+                                        "updated_at": {
+                                            "description": "The date and time when the task was updated.",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-10-15 23:19:39"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -158,7 +232,7 @@
                 ],
                 "summary": "Update the specified task in database.",
                 "description": "Update the specified task in database but only tasks that the authenticated user has permission to update will be updated except if user is admin.",
-                "operationId": "e4353fed667ca839f0ed2c38c7e08dcb",
+                "operationId": "d25c79dd74c9c2a3659cc293a698ddba",
                 "parameters": [
                     {
                         "name": "id",
@@ -176,7 +250,36 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/RegisterTaskVirtualRequest"
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "The title of the task.",
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "My first task"
+                                    },
+                                    "description": {
+                                        "description": "The description of the task.",
+                                        "type": "string",
+                                        "example": "Lorem Ipsum is simply dummy text..."
+                                    },
+                                    "status": {
+                                        "description": "The status of the task.",
+                                        "type": "string",
+                                        "enum": [
+                                            "todo",
+                                            "doing",
+                                            "done",
+                                            "cancelled"
+                                        ],
+                                        "example": "todo"
+                                    }
+                                },
+                                "type": "object"
                             }
                         }
                     }
@@ -187,10 +290,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/TaskVirtualResponse"
-                                    }
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Task updated successfully."
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -204,7 +310,7 @@
                 },
                 "security": [
                     {
-                        "scalar": "bearerAuth"
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -214,7 +320,7 @@
                 ],
                 "summary": "Remove the specified task from database.",
                 "description": "Remove the specified task from database but only task that the authenticated user has permission to delete will be deleted or if user is admin.",
-                "operationId": "4d09a66e49c002e9b7a35059edd8f31f",
+                "operationId": "451558bf818b427ada76650a5ff8721f",
                 "parameters": [
                     {
                         "name": "id",
@@ -230,10 +336,10 @@
                     "204": {
                         "description": "Operation success"
                     },
-                    "400": {
-                        "description": "The server could not process the request due to invalid input."
+                    "404": {
+                        "description": "Resource not found"
                     },
-                    "401": {
+                    "403": {
                         "description": "Unauthorized"
                     }
                 },
@@ -249,7 +355,7 @@
                 ],
                 "summary": "Update the specified task in database.",
                 "description": "Update the specified task in database but only tasks that the authenticated user has permission to update will be updated except if user is admin.",
-                "operationId": "7830cbdf44df392bb027789e858437a8",
+                "operationId": "41c154fbe44f3ce612d9d2a9ec48a6c2",
                 "parameters": [
                     {
                         "name": "id",
@@ -262,12 +368,36 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Expense data for update",
+                    "description": "Task data for partial update",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/RegisterTaskVirtualRequest"
+                                "properties": {
+                                    "title": {
+                                        "description": "The title of the task.",
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "My updated title"
+                                    },
+                                    "description": {
+                                        "description": "The description of the task.",
+                                        "type": "string",
+                                        "example": "Updated description..."
+                                    },
+                                    "status": {
+                                        "description": "The status of the task.",
+                                        "type": "string",
+                                        "enum": [
+                                            "todo",
+                                            "doing",
+                                            "done",
+                                            "cancelled"
+                                        ],
+                                        "example": "done"
+                                    }
+                                },
+                                "type": "object"
                             }
                         }
                     }
@@ -278,10 +408,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/TaskVirtualResponse"
-                                    }
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Task updated successfully."
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -295,46 +428,71 @@
                 },
                 "security": [
                     {
-                        "scalar": "bearerAuth"
+                        "bearerAuth": []
                     }
                 ]
             }
         },
-        "/api/register": {
+        "/api/v1/register": {
             "post": {
                 "tags": [
                     "User"
                 ],
-                "summary": "Register new user",
-                "description": "Register a new user and receive the user's data upon successful creation.",
-                "operationId": "97e054f1028de2829e6b4216a45a0ca0",
+                "summary": "Requests a new user",
+                "description": "Registers a new user and returns the created user data.",
+                "operationId": "registerUser",
                 "requestBody": {
-                    "description": "User data for registration",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/RegisterUserVirtualRequest"
+                                "$ref": "#/components/schemas/RegisterUserSwaggerRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "Success response",
+                        "description": "User successfully registered",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/UserVirtualResponse"
-                                    }
+                                    "$ref": "#/components/schemas/UserSwaggerResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication error or unauthorized error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "object",
+                                            "example": "This action is unauthorized."
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "The server could not process the request due to invalid input."
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "object",
+                                            "example": "Error message about field validation error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -342,73 +500,37 @@
     },
     "components": {
         "schemas": {
-            "AuthenticateUserRequest": {
-                "title": "User authentication request",
-                "description": "Basic request for user authentication",
+            "AuthenticateUserSwaggerRequest": {
+                "title": "Authenticate user request",
+                "description": "Base request for user authentication operation.",
+                "required": [
+                    "email",
+                    "password"
+                ],
                 "properties": {
                     "email": {
-                        "description": "The email address of the user.",
+                        "description": "A valid email address.",
                         "type": "string",
                         "format": "email",
                         "example": "john@example.com"
                     },
                     "password": {
-                        "description": "The password for the user.",
+                        "description": "Password with at least one uppercase letter, one lowercase letter, one number, and one special character.",
                         "type": "string",
+                        "minLength": 8,
+                        "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).+$",
                         "example": "@p5sSw0rd!"
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "example": {
+                    "email": "john@example.com",
+                    "password": "@p5sSw0rd!"
+                }
             },
-            "RegisterTaskVirtualRequest": {
-                "title": "Task register request",
-                "description": "Base request for create new task for authenticated user",
-                "properties": {
-                    "title": {
-                        "description": "The title of the task.",
-                        "type": "string",
-                        "maxLength": 100,
-                        "example": "My first task"
-                    },
-                    "description": {
-                        "description": "The description of the task.",
-                        "type": "string",
-                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-                    },
-                    "status": {
-                        "description": "The status of the task.",
-                        "type": "string",
-                        "example": "todo"
-                    }
-                },
-                "type": "object"
-            },
-            "RegisterUserVirtualRequest": {
-                "title": "User register request",
-                "description": "Request to create new user on system",
-                "properties": {
-                    "name": {
-                        "description": "The name of the user.",
-                        "type": "string",
-                        "example": "John Doe"
-                    },
-                    "email": {
-                        "description": "The email address of the user.",
-                        "type": "string",
-                        "format": "email",
-                        "example": "john@example.com"
-                    },
-                    "password": {
-                        "description": "The password for the user.",
-                        "type": "string",
-                        "example": "@p5sSw0rd!"
-                    }
-                },
-                "type": "object"
-            },
-            "TokenVirtualResponse": {
-                "title": "User authenticated response",
-                "description": "User Token response for authenticated user",
+            "TokenSwaggerResponse": {
+                "title": "Token for authenticate user request",
+                "description": "Response containing authentication token",
                 "properties": {
                     "token": {
                         "description": "The token for the user.",
@@ -428,9 +550,38 @@
                 },
                 "type": "object"
             },
-            "TaskVirtualResponse": {
+            "RegisterTaskSwaggerRequest": {
+                "title": "Task register request",
+                "description": "Base request for create new task for authenticated user",
+                "properties": {
+                    "title": {
+                        "description": "The title of the task.",
+                        "type": "string",
+                        "maxLength": 100,
+                        "example": "My first task"
+                    },
+                    "description": {
+                        "description": "The description of the task.",
+                        "type": "string",
+                        "example": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+                    },
+                    "status": {
+                        "description": "The status of the task.",
+                        "type": "string",
+                        "enum": [
+                            "todo",
+                            "doing",
+                            "done",
+                            "cancelled"
+                        ],
+                        "example": "todo"
+                    }
+                },
+                "type": "object"
+            },
+            "TaskSwaggerResponse": {
                 "title": "Task Response",
-                "description": "Task base response",
+                "description": "Task response",
                 "properties": {
                     "id": {
                         "title": "Id",
@@ -451,6 +602,12 @@
                     "status": {
                         "description": "The status of the task.",
                         "type": "string",
+                        "enum": [
+                            "todo",
+                            "doing",
+                            "done",
+                            "cancelled"
+                        ],
                         "example": "todo"
                     },
                     "created_at": {
@@ -470,43 +627,86 @@
                 },
                 "type": "object"
             },
-            "UserVirtualResponse": {
-                "title": "User response",
-                "description": "Base response for user CRUD operations",
+            "RegisterUserSwaggerRequest": {
+                "title": "Register user request",
+                "description": "Base request for user register operation.",
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
                 "properties": {
-                    "id": {
-                        "title": "Id",
-                        "description": "The unique identifier of the user.",
-                        "type": "string",
-                        "format": "uuid"
-                    },
                     "name": {
-                        "title": "Name",
-                        "description": "The name of the user.",
+                        "description": "The full name of the user.",
                         "type": "string",
-                        "format": "string",
-                        "example": "John"
+                        "maxLength": 150,
+                        "minLength": 3,
+                        "example": "John Doe"
                     },
                     "email": {
-                        "title": "Email",
-                        "description": "The email address of the user.",
+                        "description": "A valid email address.",
                         "type": "string",
                         "format": "email",
                         "example": "john@example.com"
                     },
-                    "created_at": {
-                        "title": "Created at",
-                        "description": "The date and time when the user was created",
+                    "password": {
+                        "description": "Password with at least one uppercase letter, one lowercase letter, one number, and one special character.",
                         "type": "string",
-                        "format": "date-time",
-                        "example": "2024-06-02 22:19:39"
-                    },
-                    "updated_at": {
-                        "title": "Updated at",
-                        "description": "The date and time when the user was updated",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2024-06-02 23:19:39"
+                        "minLength": 8,
+                        "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).+$",
+                        "example": "@p5sSw0rd!"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "name": "John Doe",
+                    "email": "john@example.com",
+                    "password": "@p5sSw0rd!"
+                }
+            },
+            "UserSwaggerResponse": {
+                "title": "User response",
+                "description": "Base response for user CRUD operations",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "The data of the created user.",
+                        "properties": {
+                            "id": {
+                                "title": "Id",
+                                "description": "The unique identifier of the user.",
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "name": {
+                                "title": "Name",
+                                "description": "The name of the user.",
+                                "type": "string",
+                                "example": "John Doe"
+                            },
+                            "email": {
+                                "title": "Email",
+                                "description": "The email address of the user.",
+                                "type": "string",
+                                "format": "email",
+                                "example": "johndoe@example.com"
+                            },
+                            "created_at": {
+                                "title": "Created at",
+                                "description": "The date and time when the user was created.",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2023-01-01 12:00:00"
+                            },
+                            "updated_at": {
+                                "title": "Updated at",
+                                "description": "The date and time when the user was updated.",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2023-01-01 12:00:00"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
