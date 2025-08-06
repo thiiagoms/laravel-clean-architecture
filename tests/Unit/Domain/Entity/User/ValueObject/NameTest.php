@@ -26,7 +26,7 @@ class NameTest extends TestCase
             ],
             'should throw exception when provided name is numeric' => [
                 '123456',
-                'Name must contains only letters.',
+                'Name must contain only letters.',
             ],
         ];
     }
