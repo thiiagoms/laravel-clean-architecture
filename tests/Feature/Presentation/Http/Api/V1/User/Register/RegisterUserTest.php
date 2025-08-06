@@ -266,7 +266,7 @@ class RegisterUserTest extends TestCase
     #[DataProvider('invalidPasswordCases')]
     public function it_should_validate_password(string $password, \Closure $response): void
     {
-        $payload = ['name' => fake()->name(), 'email' => fake()->freeEmail, 'password' => $password];
+        $payload = ['name' => fake()->name(), 'email' => fake()->freeEmail(), 'password' => $password];
 
         $this
             ->postJson(self::REGISTER_USER_ENDPOINT, $payload)
