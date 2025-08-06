@@ -64,7 +64,7 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
-    public function it_should_return_false_when_password_doe_not_match(): void
+    public function it_should_return_false_when_password_does_not_match(): void
     {
         $password = new Password('ValidPassword1!');
 
