@@ -1,52 +1,77 @@
-# Task Flow API Management
+# 📝 Task Flow API Management
 
-## Dependencies :package:
+A clean, containerized Laravel REST API for managing tasks — with JWT authentication, Swagger documentation, and full test coverage.
 
-- Docker :whale:
+## ⚙️ Tech Stack
 
-## Run :rocket:
+* 💎 Laravel 11 (Clean Architecture)
+* 🐳 Docker + Docker Compose
+* 🔐 JWT Auth
+* 🧪 PHPUnit for Testing (Integration & Unit Tests)
+* 📘 Swagger (via L5-Swagger)
 
-1. Clone:
+## 🚀 Quickstart
 
-```bash
-$ git clone https://github.com/thiiagoms/task-flow
-$ cd task-flow
-task-flow $
-```
-
-2. Container setup:
+### 1️⃣ Clone the repo
 
 ```bash
-task-flow $ cp .env.example .env
-task-flow $ docker-compose up -d
-task-flow $ docker-compose exec app bash
+git clone https://github.com/thiiagoms/laravel-clean-architecture.git task-flow
+cd task-flow
 ```
 
-3. Install app dependencies:
+### 2️⃣ Build and start the containers
 
 ```bash
-thiiagoms@ca644be5c8b5:/var/www$ composer install -vvv
-thiiagoms@ca644be5c8b5:/var/www$ php artisan key:generate
-thiiagoms@ca644be5c8b5:/var/www$ php artisan jwt:secret
-thiiagoms@ca644be5c8b5:/var/www$ php artisan migrate
+make build
 ```
 
-4. Run unit and integration tests:
+☝️ This runs everything you need:
+
+> * Spins up Docker containers
+> * Installs PHP dependencies
+> * Generates app key & JWT secret
+> * Runs migrations
+
+### 3️⃣ Run tests 🧪
 
 ```bash
-thiiagoms@ca644be5c8b5:/var/www$ php artisan test
+make test
 ```
 
-5. Run lint:
+Or if you want to be fancy:
 
 ```bash
-thiiagoms@ca644be5c8b5:/var/www$ composer pint app database tests
+make test-unit       # Unit tests only
+make test-feature    # Feature tests only
 ```
 
-6. Generate swagger:
+### 4️⃣ Run linter ✨
 
 ```bash
-thiiagoms@ca644be5c8b5:/var/www$ php artisan l5-swagger:generate
+make lint
 ```
 
-API with Swagger documentation at `http://localhost:8000/api/documentation`
+Formats and checks your code using [Laravel Pint](https://laravel.com/docs/10.x/pint).
+
+### 5️⃣ Generate Swagger Docs 📚
+
+```bash
+make docs
+```
+
+Docs will be available at: [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
+
+## 🧰 Available Makefile Commands
+
+| Command             | Description                           |
+|---------------------|---------------------------------------|
+| `make build`        | Build and start the Docker containers |
+| `make test`         | Run all tests (unit + feature)        |
+| `make test-unit`    | Run only unit tests                   |
+| `make test-feature` | Run only feature tests                |
+| `make lint`         | Run Laravel Pint linter               |
+| `make docs`         | Generate Swagger documentation        |
+| `make down`         | Stop and remove containers            |
+| `make tinker`       | Open Laravel Tinker REPL              |
+| `make logs`         | View container logs                   |
+
