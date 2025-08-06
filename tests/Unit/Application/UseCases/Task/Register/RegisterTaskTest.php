@@ -89,7 +89,7 @@ class RegisterTaskTest extends TestCase
             ->with($this->dto->getUserId())
             ->willReturn($user);
 
-        $this > $this->registerTaskService
+        $this->registerTaskService
             ->expects($this->once())
             ->method('handle')
             ->with($this->callback(function (Task $task) use ($user): bool {
