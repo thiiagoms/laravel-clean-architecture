@@ -9,9 +9,7 @@ use App\Domain\Repository\Task\Update\UpdateTaskRepositoryInterface;
 
 class UpdateTaskService
 {
-    public function __construct(
-        private readonly UpdateTaskRepositoryInterface $repository
-    ) {}
+    public function __construct(private readonly UpdateTaskRepositoryInterface $repository) {}
 
     public function update(Task $task): Task
     {

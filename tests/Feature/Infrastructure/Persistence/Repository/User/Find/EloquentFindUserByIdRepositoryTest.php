@@ -27,7 +27,7 @@ class EloquentFindUserByIdRepositoryTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUserWhenUserWithIdExistsInDatabase(): void
+    public function it_should_return_user_when_user_with_id_exists_in_database(): void
     {
         LaravelUserModel::factory()->createOne(['id' => $this->id->getValue()]);
 
@@ -37,7 +37,7 @@ class EloquentFindUserByIdRepositoryTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnNullWhenUserWithIdDoesNotExistInDatabase(): void
+    public function it_should_return_null_when_user_with_id_does_not_exist_in_database(): void
     {
         $result = $this->repository->find($this->id);
 

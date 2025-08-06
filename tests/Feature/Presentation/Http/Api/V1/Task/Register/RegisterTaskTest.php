@@ -13,10 +13,10 @@ class RegisterTaskTest extends TestCase
 {
     use DatabaseTransactions;
 
-    private const string REGISTER_TASK_ENDPOINT = '/api/v1/task/register';
+    private const string REGISTER_TASK_ENDPOINT = '/api/v1/task';
 
     #[Test]
-    public function itShouldNotAllowRegisterTaskWhenUserIsNotAuthenticated(): void
+    public function it_should_not_allow_register_task_when_user_is_not_authenticated(): void
     {
         $this
             ->postJson(self::REGISTER_TASK_ENDPOINT, [
@@ -92,7 +92,7 @@ class RegisterTaskTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidTitleCases')]
-    public function itShouldValidateTitle(string|int $title, \Closure $response): void
+    public function it_should_validate_title(string|int $title, \Closure $response): void
     {
         $user = LaravelUserModel::factory()->createOne();
 
@@ -145,7 +145,7 @@ class RegisterTaskTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidDescriptionCases')]
-    public function itShouldValidateDescription(string|int $description, \Closure $response): void
+    public function it_should_validate_description(string|int $description, \Closure $response): void
     {
         $user = LaravelUserModel::factory()->createOne();
 
@@ -161,7 +161,7 @@ class RegisterTaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreateNewTaskForAuthenticatedUser(): void
+    public function it_should_create_new_task_for_authenticated_user(): void
     {
         $user = LaravelUserModel::factory()->createOne();
 

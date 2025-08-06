@@ -27,7 +27,7 @@ class EloquentFindUserByEmailRepositoryTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUserWhenUserWithEmailExistsInDatabase(): void
+    public function it_should_return_user_when_user_with_email_exists_in_database(): void
     {
         LaravelUserModel::factory()->createOne(['email' => $this->email->getValue()]);
 
@@ -37,7 +37,7 @@ class EloquentFindUserByEmailRepositoryTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnNullWhenUserWithEmailDoesNotExistInDatabase(): void
+    public function it_should_return_null_when_user_with_email_does_not_exist_in_database(): void
     {
         $result = $this->repository->find($this->email);
 

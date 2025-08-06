@@ -15,8 +15,8 @@ class TaskEntityUpdater
             description: $dto->getDescription() ?? $task->getDescription(),
             owner: $task->getOwner(),
             status: empty($dto->getStatus())
-                    ? $task->getStatus()
-                    : StatusFactory::map($task->getStatus()),
+                ? StatusFactory::map($task->getStatus())
+                : StatusFactory::map($dto->getStatus()),
             id: $task->getId(),
             createdAt: $task->getCreatedAt(),
             updatedAt: new \DateTimeImmutable,

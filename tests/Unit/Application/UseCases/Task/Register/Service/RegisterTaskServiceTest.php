@@ -31,7 +31,7 @@ class RegisterTaskServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldRegisterTask(): void
+    public function it_should_register_task(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),

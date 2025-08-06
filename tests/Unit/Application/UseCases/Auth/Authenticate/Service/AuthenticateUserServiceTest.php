@@ -38,7 +38,7 @@ class AuthenticateUserServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUserWhenUserFoundAndPasswordMatches(): void
+    public function it_should_return_user_when_user_found_and_password_matches(): void
     {
         $email = new Email('ilovelaravel@gmail.com');
         $password = new Password(password: 'P4SSw0ord!@#dASD_', hashed: false);
@@ -65,7 +65,7 @@ class AuthenticateUserServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnNullWhenUserNotFound(): void
+    public function it_should_return_null_when_user_not_found(): void
     {
         $dto = new AuthenticateDTO(
             email: new Email('ilovelaravel@gmail.com'),
@@ -84,7 +84,7 @@ class AuthenticateUserServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnNullWhenUserPasswordDoesNotMatch(): void
+    public function it_should_return_null_when_user_password_does_not_match(): void
     {
         $email = new Email('ilovelaravel@gmail.com');
         $password = new Password(password: 'P4SSw0ord!@#dASD_', hashed: false);

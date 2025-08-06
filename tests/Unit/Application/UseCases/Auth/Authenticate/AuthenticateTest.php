@@ -50,7 +50,7 @@ class AuthenticateTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenAuthenticationFails(): void
+    public function it_should_throw_exception_when_authentication_fails(): void
     {
         $this->authenticateUserService
             ->expects($this->once())
@@ -69,7 +69,7 @@ class AuthenticateTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnTokenWhenAuthenticationSucceeds(): void
+    public function it_should_return_token_when_authentication_succeeds(): void
     {
         $existsUser = new User(
             name: new Name('John Doe'),

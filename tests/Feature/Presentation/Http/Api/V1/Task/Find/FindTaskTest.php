@@ -16,7 +16,7 @@ class FindTaskTest extends TestCase
     private const string FIND_TASK_ENDPOINT = '/api/v1/task/';
 
     #[Test]
-    public function itShouldNotAllowToRetrieveTaskWhenUserIsNotAuthenticated(): void
+    public function it_should_not_allow_to_retrieve_task_when_user_is_not_authenticated(): void
     {
         $this
             ->getJson(self::FIND_TASK_ENDPOINT.fake()->uuid())
@@ -29,7 +29,7 @@ class FindTaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldNotAllowWhenUserIsAuthenticatedButTryToRetrieveExpenseThatDoesNotExists(): void
+    public function it_should_not_allow_to_retrieve_task_when_user_is_authenticated_but_task_does_not_exists(): void
     {
         $owner = LaravelUserModel::factory()->createOne();
 
@@ -47,7 +47,7 @@ class FindTaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldNotAllowToRetrieveTaskWhenUserIsAuthenticatedAndTaskExistsButDoesNotBelongsToUser(): void
+    public function it_should_not_allow_to_retrieve_task_when_user_is_authenticated_and_task_exists_but_does_not_belongs_to_user(): void
     {
         $owner = LaravelUserModel::factory()->createOne();
 
@@ -67,7 +67,7 @@ class FindTaskTest extends TestCase
     }
 
     #[Test]
-    public function ItShouldReturnTaskThatBelongsToAuthenticatedUser(): void
+    public function it_should_return_task_that_belongs_to_authenticated_user(): void
     {
         $owner = LaravelUserModel::factory()->createOne();
 

@@ -17,7 +17,7 @@ class EloquentRegisterTaskRepositoryTest extends TestCase
     use DatabaseTransactions;
 
     #[Test]
-    public function itShouldCreateNewTaskAndReturnCreatedTaskEntity(): void
+    public function it_should_create_new_task_and_return_created_task_entity(): void
     {
         $laravelUserModel = LaravelUserModel::factory()->createOne();
 

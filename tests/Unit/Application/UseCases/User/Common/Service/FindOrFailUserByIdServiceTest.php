@@ -37,7 +37,7 @@ class FindOrFailUserByIdServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenUserNotFound(): void
+    public function it_should_throw_exception_when_user_not_found(): void
     {
         $this->repository
             ->expects($this->once())
@@ -52,7 +52,7 @@ class FindOrFailUserByIdServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUserWhenFound(): void
+    public function it_should_return_user_when_found(): void
     {
         $user = new User(
             name: new Name('John Doe'),

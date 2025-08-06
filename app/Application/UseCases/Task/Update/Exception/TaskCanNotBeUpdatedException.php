@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Application\UseCases\Task\Exception;
+namespace App\Application\UseCases\Task\Update\Exception;
 
-class TaskNotFoundException extends \DomainException
+class TaskCanNotBeUpdatedException extends \DomainException
 {
     public function __construct(string $message = '', int $code = 0, ?\Throwable $previous = null)
     {
@@ -11,6 +11,6 @@ class TaskNotFoundException extends \DomainException
 
     public static function create(): self
     {
-        return new self(message: 'Task not found.');
+        return new self(message: 'Task cannot be updated');
     }
 }

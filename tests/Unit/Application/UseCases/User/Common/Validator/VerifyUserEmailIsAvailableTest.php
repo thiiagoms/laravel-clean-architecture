@@ -37,7 +37,7 @@ class VerifyUserEmailIsAvailableTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUserWhenEmailIsAvailable(): void
+    public function it_should_return_user_when_email_is_available(): void
     {
         $this->repository
             ->expects($this->once())
@@ -51,7 +51,7 @@ class VerifyUserEmailIsAvailableTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowEmailAlreadyExistsExceptionWhenEmailIsNotAvailable(): void
+    public function it_should_throw_email_already_exists_exception_when_email_is_not_available(): void
     {
         $this->repository
             ->expects($this->once())

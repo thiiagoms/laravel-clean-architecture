@@ -91,7 +91,7 @@ class RegisterUserTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidNameCases')]
-    public function itShouldValidateName(string|float $name, \Closure $response): void
+    public function it_should_validate_name(string|float $name, \Closure $response): void
     {
         $payload = ['name' => $name, 'email' => fake()->freeEmail(), 'password' => '@p5sSw0rd!'];
 
@@ -154,7 +154,7 @@ class RegisterUserTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidEmailCases')]
-    public function itShouldValidateEmail(string $email, \Closure $response): void
+    public function it_should_validate_email(string $email, \Closure $response): void
     {
         LaravelUserModel::factory()->createOne(['email' => 'ilovelaravel@gmail.com']);
 
@@ -264,7 +264,7 @@ class RegisterUserTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidPasswordCases')]
-    public function itShouldValidatePassword(string $password, \Closure $response): void
+    public function it_should_validate_password(string $password, \Closure $response): void
     {
         $payload = ['name' => fake()->name(), 'email' => fake()->freeEmail, 'password' => $password];
 
@@ -275,7 +275,7 @@ class RegisterUserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreateUserAndReturnCreatedUserData(): void
+    public function it_should_create_user_and_return_created_user_data(): void
     {
         $payload = [
             'name' => 'John Doe',

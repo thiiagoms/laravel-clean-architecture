@@ -23,7 +23,7 @@ class EmailTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidEmailCases')]
-    public function itShouldThrowExceptionForInvalidEmail(string $email): void
+    public function it_should_throw_exception_for_invalid_email(string $email): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid e-mail address given: '{$email}'");
@@ -32,7 +32,7 @@ class EmailTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreateEmailWithValidEmail(): void
+    public function it_should_create_email_with_valid_email(): void
     {
         $email = new Email('ilovelaravel@gmail.com');
 

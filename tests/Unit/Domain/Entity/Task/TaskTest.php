@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 class TaskTest extends TestCase
 {
     #[Test]
-    public function itShouldCreateTaskWithValidData(): void
+    public function it_should_create_task_with_valid_data(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -42,7 +42,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowTaskWithTodoStatusToGoToDoing(): void
+    public function it_should_allow_task_with_todo_status_to_go_to_doing(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -66,7 +66,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowTaskWithTodoStatusToGoToCancelled(): void
+    public function it_should_allow_task_with_todo_status_to_go_to_cancelled(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -90,7 +90,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithTodoStatusGoesToTodoAgain(): void
+    public function it_should_throw_exception_when_task_with_todo_status_goes_to_todo_again(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -111,7 +111,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithTodoStatusGoesToDone(): void
+    public function it_should_throw_exception_when_task_with_todo_status_goes_to_done(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -132,7 +132,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowTaskWithDoingStatusToGoToDone(): void
+    public function it_should_allow_task_with_doing_status_to_go_to_done(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -158,7 +158,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowTaskWithDoingStatusToGoToCancelled(): void
+    public function it_should_allow_task_with_doing_status_to_go_to_cancelled(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -184,7 +184,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithDoingStatusGoesToTodo(): void
+    public function it_should_throw_exception_when_task_with_doing_status_goes_to_todo(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -207,7 +207,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithDoingStatusGoesToDoingAgain(): void
+    public function it_should_throw_exception_when_task_with_doing_status_goes_to_doing_again(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -230,7 +230,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithDoneStatusGoesToTodo(): void
+    public function it_should_throw_exception_when_task_with_done_status_goes_to_todo(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -255,7 +255,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithDoneStatusGoesToDoing(): void
+    public function it_should_throw_exception_when_task_with_done_status_goes_to_doing(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -280,7 +280,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithDoneStatusGoesToDoneAgain(): void
+    public function it_should_throw_exception_when_task_with_done_status_goes_to_done_again(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -305,7 +305,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithDoneStatusGoesToCancelled(): void
+    public function it_should_throw_exception_when_task_with_done_status_goes_to_cancelled(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -330,7 +330,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithCancelledStatusGoesToTodo(): void
+    public function it_should_throw_exception_when_task_with_cancelled_status_goes_to_todo(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -353,7 +353,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithCancelledStatusGoesToDoing(): void
+    public function it_should_throw_exception_when_task_with_cancelled_status_goes_to_doing(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -376,7 +376,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithCancelledStatusGoesToDoneAgain(): void
+    public function it_should_throw_exception_when_task_with_cancelled_status_goes_to_done_again(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -399,7 +399,7 @@ class TaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTaskWithCancelledStatusGoesToCancelledAgain(): void
+    public function it_should_throw_exception_when_task_with_cancelled_status_goes_to_cancelled_again(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),

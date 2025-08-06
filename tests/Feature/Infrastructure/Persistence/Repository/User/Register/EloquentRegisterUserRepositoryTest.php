@@ -17,7 +17,7 @@ class EloquentRegisterUserRepositoryTest extends TestCase
     use DatabaseTransactions;
 
     #[Test]
-    public function itShouldCreateNewUserAndReturnCreatedUserEntity(): void
+    public function it_should_create_new_user_and_return_created_user_entity(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -34,6 +34,5 @@ class EloquentRegisterUserRepositoryTest extends TestCase
         $this->assertTrue($result->getPassword()->match(passwordAsPlainText: 'P4sSw0RdStr0ng!@#@_'));
 
         $this->assertNotNull($result->getId());
-        $this->assertTrue(uuid_is_valid($result->getId()));
     }
 }

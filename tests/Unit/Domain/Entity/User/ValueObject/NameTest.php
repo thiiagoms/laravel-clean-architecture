@@ -33,7 +33,7 @@ class NameTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidNameCases')]
-    public function itShouldThrowExceptionWhenNameIsInvalid(string $name, string $expectedMessage): void
+    public function it_should_throw_exception_when_name_is_invalid(string $name, string $expectedMessage): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -42,7 +42,7 @@ class NameTest extends TestCase
     }
 
     #[Test]
-    public function itShouldTransformEachLetterToUpperCase(): void
+    public function it_should_transform_each_letter_to_upper_case(): void
     {
         $name = new Name('john doe');
         $this->assertEquals('John Doe', $name->getValue());

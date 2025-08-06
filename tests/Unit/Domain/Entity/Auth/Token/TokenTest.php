@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class TokenTest extends TestCase
 {
     #[Test]
-    public function itShouldCreateToken(): void
+    public function it_should_create_token(): void
     {
         $token = TokenFactory::create(token: 'jwt.token.string', type: 'Bearer', expiresIn: 3600);
 
@@ -19,7 +19,7 @@ class TokenTest extends TestCase
     }
 
     #[Test]
-    public function itShouldTransformTokenToArray(): void
+    public function it_should_transform_token_to_array(): void
     {
         $token = TokenFactory::create(token: 'jwt.token.string', type: 'Bearer', expiresIn: 3600);
 
@@ -33,7 +33,7 @@ class TokenTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTokenIsEmpty(): void
+    public function it_should_throw_exception_when_token_is_empty(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Property 'token' cannot be empty.");
@@ -42,7 +42,7 @@ class TokenTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTypeIsEmpty(): void
+    public function it_should_throw_exception_when_type_is_empty(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Property 'type' cannot be empty.");
@@ -51,7 +51,7 @@ class TokenTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenExpiresInIsEmpty(): void
+    public function it_should_throw_exception_when_expires_in_is_empty(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Property 'expiresIn' cannot be empty.");

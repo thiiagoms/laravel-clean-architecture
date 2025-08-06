@@ -45,7 +45,7 @@ class AuthenticateTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidEmailCases')]
-    public function itShouldValidateEmail(string $email, \Closure $response): void
+    public function it_should_validate_email(string $email, \Closure $response): void
     {
         $this
             ->postJson(self::AUTHENTICATE_USER_ENDPOINT, ['email' => $email, 'password' => '@p5sSw0rd!'])
@@ -151,7 +151,7 @@ class AuthenticateTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidPasswordCases')]
-    public function itShouldValidatePassword(string $password, \Closure $response): void
+    public function it_should_validate_password(string $password, \Closure $response): void
     {
         $payload = ['email' => fake()->freeEmail, 'password' => $password];
 
@@ -162,7 +162,7 @@ class AuthenticateTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUnauthenticatedMessageWhenUserEmailDoesNotExists(): void
+    public function it_should_return_unauthenticated_message_when_user_email_does_not_exists(): void
     {
         LaravelUserModel::factory()->createOne(['email' => 'ilovelaravel@gmail.com']);
 
@@ -180,7 +180,7 @@ class AuthenticateTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnUnauthenticatedMessageWhenUserPasswordDoesNotMatch(): void
+    public function it_should_return_unauthenticated_message_when_user_password_does_not_match(): void
     {
         LaravelUserModel::factory()->createOne(['email' => 'ilovelaravel@gmail.com']);
 
@@ -198,7 +198,7 @@ class AuthenticateTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAuthenticateUserAndReturnToken(): void
+    public function it_should_authenticate_user_and_return_token(): void
     {
         LaravelUserModel::factory()->createOne([
             'email' => 'ilovelaravel@gmail.com',

@@ -36,7 +36,7 @@ class PasswordTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidPasswordCases')]
-    public function itShouldThrowExceptionWhenPasswordIsInvalid(string $password): void
+    public function it_should_throw_exception_when_password_is_invalid(string $password): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.');
@@ -45,7 +45,7 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreatePasswordWhenPasswordIsValid(): void
+    public function it_should_create_password_when_password_is_valid(): void
     {
         $password = new Password('ValidPassword1!');
 
@@ -55,7 +55,7 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreatePasswordWhenProvidedPasswordIsValidAndNotHashed(): void
+    public function it_should_create_password_when_provided_password_is_valid_and_not_hashed(): void
     {
         $password = new Password('ValidPassword1!', false);
 
@@ -64,7 +64,7 @@ class PasswordTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnFalseWhenPasswordDoeNotMatch(): void
+    public function it_should_return_false_when_password_doe_not_match(): void
     {
         $password = new Password('ValidPassword1!');
 

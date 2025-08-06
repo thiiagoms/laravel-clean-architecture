@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Exceptions;
 
 use App\Application\UseCases\Auth\Exception\InvalidCredentialsException;
+use DomainException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
@@ -42,6 +43,9 @@ class Handler extends ExceptionHandler
             ),
             $e instanceof NotFoundHttpException => response()->json(
                 data: ['error' => 'resource not found'], status: Response::HTTP_NOT_FOUND
+            ),
+            $e instanceof DomainException => response()->json(
+                data: ['error' => $e->getMessage()], status: Response::HTTP_BAD_REQUEST
             ),
             default => dd($e)
         });

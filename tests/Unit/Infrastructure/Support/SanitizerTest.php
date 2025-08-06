@@ -35,7 +35,7 @@ class SanitizerTest extends TestCase
 
     #[Test]
     #[DataProvider('cleanCases')]
-    public function itShouldCleanData(string|array $input, string|array $result): void
+    public function it_should_clean_data(string|array $input, string|array $result): void
     {
         $this->assertEquals($result, Sanitizer::clean($input));
     }

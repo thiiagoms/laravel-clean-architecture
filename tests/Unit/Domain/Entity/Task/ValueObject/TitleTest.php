@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class TitleTest extends TestCase
 {
     #[Test]
-    public function itShouldThrowExceptionWhenTitleIsNotAString(): void
+    public function it_should_throw_exception_when_title_is_not_a_string(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Title must be a valid string and cannot be longer than 100 characters.');
@@ -18,7 +18,7 @@ class TitleTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenTitleIsTooLong(): void
+    public function it_should_throw_exception_when_title_is_too_long(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Title must be a valid string and cannot be longer than 100 characters.');
@@ -27,7 +27,7 @@ class TitleTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreateTitleSuccessfully(): void
+    public function it_should_create_title_successfully(): void
     {
         $title = new Title('Valid Title');
 

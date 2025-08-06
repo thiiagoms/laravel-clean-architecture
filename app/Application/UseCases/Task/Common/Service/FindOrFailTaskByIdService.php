@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCases\Task\Common\Service;
 
-use App\Application\UseCases\Task\Exception\TaskNotFoundException;
+use App\Application\UseCases\Task\Common\Exception\TaskNotFoundException;
 use App\Domain\Common\ValueObject\Id;
 use App\Domain\Entity\Task\Task;
 use App\Domain\Repository\Task\Find\FindTaskByIdRepositoryInterface;

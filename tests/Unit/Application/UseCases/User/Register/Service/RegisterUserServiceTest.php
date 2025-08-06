@@ -44,7 +44,7 @@ class RegisterUserServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenEmailIsAlreadyInUse(): void
+    public function it_should_throw_exception_when_email_is_already_in_use(): void
     {
         $this->guardAgainstEmailAlreadyInUse
             ->expects($this->once())
@@ -63,7 +63,7 @@ class RegisterUserServiceTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreateUserSuccessfully(): void
+    public function it_should_create_user_successfully(): void
     {
         $this->guardAgainstEmailAlreadyInUse
             ->expects($this->once())

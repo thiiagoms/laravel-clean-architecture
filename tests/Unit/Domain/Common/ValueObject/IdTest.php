@@ -23,7 +23,7 @@ class IdTest extends TestCase
 
     #[Test]
     #[DataProvider('invalidIdCases')]
-    public function itShouldThrowExceptionWhenIdIsInvalid(string $id): void
+    public function it_should_throw_exception_when_id_is_invalid(string $id): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid id given: '{$id}'");
@@ -32,7 +32,7 @@ class IdTest extends TestCase
     }
 
     #[Test]
-    public function itShouldCreateIdWhenIdIsValid(): void
+    public function it_should_create_id_when_id_is_valid(): void
     {
         $id = new Id('550e8400-e29b-41d4-a716-446655440000');
 

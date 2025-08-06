@@ -54,7 +54,7 @@ class RegisterTaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenUserNotFound(): void
+    public function it_should_throw_exception_when_user_not_found(): void
     {
         $this->findOrFailUserByIdService
             ->expects($this->once())
@@ -73,7 +73,7 @@ class RegisterTaskTest extends TestCase
     }
 
     #[Test]
-    public function itShouldRegisterTaskSuccessfully(): void
+    public function it_should_register_task_successfully(): void
     {
         $user = new User(
             name: new Name('John Doe'),

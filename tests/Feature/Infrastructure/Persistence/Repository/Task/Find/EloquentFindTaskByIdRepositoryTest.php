@@ -27,7 +27,7 @@ class EloquentFindTaskByIdRepositoryTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnTaskWhenTaskWithIdExistsInDatabase(): void
+    public function it_should_return_task_when_task_with_id_exists_in_database(): void
     {
         LaravelTaskModel::factory()->create(['id' => $this->id->getValue()]);
 
@@ -37,7 +37,7 @@ class EloquentFindTaskByIdRepositoryTest extends TestCase
     }
 
     #[Test]
-    public function itShouldReturnNullWhenTaskWithIdDoesNotExistInDatabase(): void
+    public function it_should_return_null_when_task_with_id_does_not_exist_in_database(): void
     {
         $result = $this->repository->find($this->id);
 

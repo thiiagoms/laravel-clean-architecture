@@ -12,6 +12,7 @@ use OpenApi\Attributes as OA;
 class RegisterTaskSwaggerRequest
 {
     #[OA\Property(
+
         property: 'title',
         description: 'The title of the task.',
         type: 'string',

@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class UserTest extends TestCase
 {
     #[Test]
-    public function itShouldCreateUserWithValidData(): void
+    public function it_should_create_user_with_valid_data(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -40,7 +40,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowUserToChangeName(): void
+    public function it_should_allow_user_to_change_name(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -57,7 +57,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowUserToChangeEmail(): void
+    public function it_should_allow_user_to_change_email(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -74,7 +74,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowUserToChangePassword(): void
+    public function it_should_allow_user_to_change_password(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -93,7 +93,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowUserToBecomeAdmin(): void
+    public function it_should_allow_user_to_become_admin(): void
     {
         $admin = new User(
             name: new Name('John Admin Data'),
@@ -118,7 +118,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldThrowExceptionWhenNonAdminUserTriesToBecomeAdmin(): void
+    public function it_should_throw_exception_when_non_admin_user_tries_to_become_admin(): void
     {
         $admin = UserFactory::create(
             name: new Name('John Admin Data'),
@@ -139,7 +139,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowAdminToBecomeUser(): void
+    public function it_should_allow_admin_to_become_user(): void
     {
         $admin = new User(
             name: new Name('John Admin Data'),
@@ -158,7 +158,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldAllowUserToConfirmEmail(): void
+    public function it_should_allow_user_to_confirm_email(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),
@@ -177,7 +177,7 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function itShouldTransformUserToArray(): void
+    public function it_should_transform_user_to_array(): void
     {
         $user = UserFactory::create(
             name: new Name('John Doe'),

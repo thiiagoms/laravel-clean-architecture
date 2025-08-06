@@ -6,6 +6,7 @@ namespace App\Application\UseCases\Task\Update;
 
 use App\Application\UseCases\Task\Common\Service\FindOrFailTaskByIdService;
 use App\Application\UseCases\Task\Update\DTO\UpdateTaskDTO;
+use App\Application\UseCases\Task\Update\Exception\TaskCanNotBeUpdatedException;
 use App\Application\UseCases\Task\Update\Service\TaskEntityUpdater;
 use App\Application\UseCases\Task\Update\Service\UpdateTaskService;
 use App\Domain\Entity\Task\Task;
@@ -21,12 +22,19 @@ final class UpdateTask
     {
         $task = $this->findOrFailTaskByIdService->findOrFail($dto->getId());
 
-        if ($task->getStatus()->isDone() || $task->getStatus()->isCancelled()) {
-            // TODO: Should block when task is done or cancelled
-        }
+        $this->canUpdateTask($task);
 
         $task = TaskEntityUpdater::mapper(task: $task, dto: $dto);
 
         return $this->service->update($task);
+    }
+
+    private function canUpdateTask(Task $task): void
+    {
+        $status = $task->getStatus();
+
+        if ($status->isDone() || $status->isCancelled()) {
+            throw TaskCanNotBeUpdatedException::create();
+        }
     }
 }
