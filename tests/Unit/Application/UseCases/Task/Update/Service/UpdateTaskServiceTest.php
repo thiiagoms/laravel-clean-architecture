@@ -36,7 +36,7 @@ class UpdateTaskServiceTest extends TestCase
     protected function setUp(): void
     {
         $this->owner = new User(
-            name: new Name('John Doen'),
+            name: new Name('John Doe'),
             email: new Email('ilovelaravel@gmail.com'),
             password: new Password(password: 'P4sSw0rdSAD!@#)'),
             role: Role::USER,
